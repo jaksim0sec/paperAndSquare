@@ -25,8 +25,8 @@
     border-radius: 10px;
     overflow: hidden;
     position: absolute;
-    min-width: 1300px;
-    min-height: 700px;
+    min-width: 90vw;
+    min-height: 90vh;
     box-shadow: inset -10px -10px 10px #00000040, inset 5px 5px 10px #FFFFFF40;
     transition: all 0.2s ease;
   }
@@ -256,12 +256,12 @@
   const 오브젝트 = {};
   let 충돌중복방지 = true;
 
-  function 기본설정() {
+  async function 기본설정() {
     const 주인공 = HTML('#player');
     const 월드 = HTML('#world');
-
-    월드.style.minWidth = `${설정객체.월드크기.x}px`;
-    월드.style.minHeight = `${설정객체.월드크기.y}px`;
+    월드크기 = {x: 월드.clientWidth, y: 월드.clientHeight};
+    //월드.style.minWidth = `${설정객체.월드크기.x}px`;
+    //월드.style.minHeight = `${설정객체.월드크기.y}px`;
 
     주인공.style.width = `${설정객체.주인공크기.x}px`;
     주인공.style.height = `${설정객체.주인공크기.y}px`;
@@ -465,7 +465,7 @@
           대상오브젝트.deg = 플레이어방향
         }
         else {대상오브젝트.deg += Math.random() * 5.5;}
-        let 이동거리 = Math.random() * 20 + 40 + 레벨 * 3;
+        let 이동거리 = Math.random() * 20 + 60 + 레벨 * 3;
         let 이동X = 이동거리 * Math.cos(대상오브젝트.deg * (Math.PI / 180));
         let 이동Y = 이동거리 * Math.sin(대상오브젝트.deg * (Math.PI / 180));
 
