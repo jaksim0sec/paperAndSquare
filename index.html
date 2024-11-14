@@ -1,51 +1,53 @@
 <head>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=IBM+Plex+Sans+KR&family=Jua&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=IBM+Plex+Sans+KR&family=Jua&display=swap"
+    rel="stylesheet">
 
 </head>
 
 <style>
   body {
-    margin: 0px;
+    margin: 0;
     width: 100vw;
-    height: 90vh;
+    height: 100vh; /* 90vh에서 100vh로 수정하여 전체 화면을 차지하도록 */
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: black;
     overflow: hidden;
-    /*font-family: "IBM Plex Sans KR", sans-serif;
-    font-weight: 400;
-    font-style: normal;*/
   }
 
   #world {
-    background : linear-gradient(135deg, #ACA1FF, #9283FF, #7F6EFD);
+    background: linear-gradient(135deg, #ACA1FF, #9283FF, #7F6EFD);
     border-radius: 10px;
     overflow: hidden;
-    position: relative;
-    width: 1200px;
-    height: 600px;
-    box-shadow: inset -10px -10px 10px #00000040,inset 5px 5px 10px #FFFFFF40;
+    position: absolute;
+    min-width: 1300px;
+    min-height: 700px;
+    box-shadow: inset -10px -10px 10px #00000040, inset 5px 5px 10px #FFFFFF40;
+    top: 50%; /* 화면의 50% */
+    left: 50%; /* 화면의 50% */
+    transform: translate(-50%, -50%); /* 요소를 정확히 중앙으로 이동 */
   }
+
 
   .object {
     position: absolute;
   }
 
-  #player{
+  #player {
     position: absolute;
     background-color: transparent;
     box-shadow: 5px 5px 3px #00000050;
-    transition: all 0.15s ease-out;
+    transition : all 0.2s ease,width 1s ease, height 1s ease;
     border-radius: 5px;
   }
 
-  #player div{
+  #player div {
     position: absolute;
     background: linear-gradient(135deg, #FDD8AA, #FFD07E, #FCBF57, #FFAB44, #FFAB44);
-    transition: all 1s ease-out;
+    transition : all 1s ease-out,width 1s ease, height 1s ease;
     border: none;
     border-radius: 5px;
     box-shadow: inset -2px -2px 2px #733F0080, inset -22px -22px 2px #FFFFFF50;
@@ -63,7 +65,7 @@
     height: 40px;
     border-radius: 50%;
     border: 2px solid rgba(255, 0, 0, 0.3);
-    
+
   }*/
   .enemy {
     position: absolute;
@@ -73,34 +75,147 @@
     border-width: 0px 7px 15px 7px;
     border-color: transparent transparent #E7E5FA transparent;
     animation: show 2s ease-in-out;
-    /*box-shadow: 0px 0px 1px #000000;*/
+    transform-origin: center center; /* 삼각형 회전 중심을 설정 */
   }
 
-  @keyframes show{
-    0%{opacity: 0;}
-    100%{opacity: 1;}
+
+
+  @keyframes show {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
   }
 
-  @keyframes scoreSet{
-    50%{transform: scale(1.2) translateY(-5px);}
-    100%{}
+  @keyframes stageSet {
+    50% {
+      transform: scale(1.00) translateY(-10px);
+    }
+
+    100% {}
   }
 
-  #score {
+  #stage {
     margin: 8px 12px;
     color: white;
     font-size: 40px;
     font-weight: bold;
     transition: all 0.5s ease;
-    position: absolute; 
+    position: absolute;
+    width: 180px;
   }
+
+  #score {
+    margin: 70px 12px;
+    color: #FFFFFF80;
+    font-size: 30px;
+    font-weight: bold;
+    position: absolute;
+  }
+
+  progress {
+    width: 150px;
+    height: 10px;
+    border-radius: 10px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.2);
+    appearance: none;
+  }
+
+  progress::-webkit-progress-bar {
+    background-color: rgba(255, 255, 255, 0.2); 
+    border-radius: 10px;
+  }
+
+  progress::-webkit-progress-value {
+    transition: all 0.5s ease;
+    background-color: rgba(255, 255, 255, 0.5); 
+    border-radius: 10px;
+  }
+
+  progress::-moz-progress-bar {
+    transition: all 0.5s ease;
+    background-color: rgba(255, 255, 255, 0.5); 
+    border-radius: 10px;
+  }
+  #window {
+      position: absolute;
+      z-index: 0;
+      width: 340px;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0px 0px 5px #00000030;
+      background-color: white;
+      display: flexbox;
+      justify-content: center;
+      justify-items: center;
+      align-items: center;
+      align-content: center;
+      transition: height 0.5s ease;
+      background-color: #00000060;
+      color: #FFFFFFCC;
+  }
+
+  .window-holder {
+      position: absolute;
+      z-index: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: #00000080;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+
+  #close{transition:all 0.5s ease; display: none;}
+  #window-cont{width: 300px;}
+
+  button {
+      border-radius: 20px;
+      background-color: #00000060;
+      color: #FFFFFFCC;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      padding: 8px 16px;
+      border: none;
+      height: 46px;
+      width: 200px;
+      font-size: 16px;
+      cursor: pointer;
+      opacity: 0;
+      animation: showB 0.5s ease-in-out;
+  }
+
+  @keyframes showB{
+    0%{opacity: 0;}
+    100%{opacity: 1;}
+  }
+  button:hover {
+      background-color: #00000030;
+      transform: translateY(-2px) scale(1.02);
+  }
+
+  button:active {
+      transform: scale(0.95);
+  }
+
+  .highlight{font-weight: bold;}
 </style>
 
 <div id="world">
-  <div id = "player_range">
-    <div id="player"><div id="player-dis"></div></div>
+  <div id="player_range">
+    <div id="player">
+      <div id="player-dis"></div>
+    </div>
   </div>
-  <div id = "score" class="object" style = "z-index: 1;">#10</div>
+  <div id="stage" class="object" style="z-index: 1;">#10</div>
+  <progress id="score" class="object" style="z-index: 1;" value="5" max="5"></progress>
+<div id = "gameOver">
+  
+</div>
 </div>
 
 <script>
@@ -111,8 +226,8 @@
 
   // 게임 함수 설정
   const 설정객체 = {
-    주인공크기: { x: 20, y: 20 },
-    월드크기: { x: 1200, y: 600 }
+    주인공크기: {x: 20, y: 20},
+    월드크기: {x: 1300, y: 700}
   };
   const keyIntervals = {};
   const 오브젝트 = {};
@@ -121,7 +236,7 @@
   function 기본설정() {
     const 주인공 = HTML('#player');
     const 월드 = HTML('#world');
-    
+
     월드.style.minWidth = `${설정객체.월드크기.x}px`;
     월드.style.minHeight = `${설정객체.월드크기.y}px`;
 
@@ -139,16 +254,28 @@
     };
   }
   function 적군생성(num) {
+    const player = HTML('#player');
+    const playerRect = player.getBoundingClientRect();
+    const playerX = playerRect.left + playerRect.width / 2;
+    const playerY = playerRect.top + playerRect.height / 2;
+    const minDistance = 200;
+
     for (let i = 0; i < num; i++) {
+      let randomX, randomY, distance;
+
+      do {
+
+        randomX = Math.floor(Math.random() * 설정객체.월드크기.x);
+        randomY = Math.floor(Math.random() * 설정객체.월드크기.y);
+
+        distance = Math.sqrt(Math.pow(randomX - playerX, 2) + Math.pow(randomY - playerY, 2));
+      } while (distance < minDistance); 
       적카운터++;
       const 적군 = document.createElement('div');
       적군.classList.add('enemy');
       적군.id = `enemy${적카운터}`;
+      적군.innerHTML = `<div class="shadow"></div>`;
       HTML('#world').appendChild(적군);
-
-      // 랜덤 위치 설정
-      const randomX = Math.floor(Math.random() * 설정객체.월드크기.x);
-      const randomY = Math.floor(Math.random() * 설정객체.월드크기.y);
 
       적군.style.top = `${randomY}px`;
       적군.style.left = `${randomX}px`;
@@ -158,20 +285,57 @@
         name: `#enemy${적카운터}`,
         x: randomX,
         y: randomY,
-        deg: Math.floor(Math.random() * 180) + 1  // 1 ~ 180 사이의 각도 설정
+        deg: Math.floor(Math.random() * 180) + 1
       };
     }
   }
 
+
+  function 게임오버(){
+    windowAlert('게임오버',`
+    게임이 끝났습니다. 
+    <div style = "margin:20px;"><hr style="width: 30%; height: 2px; background-color: #FFFFFF50; border: none;">
+</div>
+    점수 : <span class = "highlight">${레벨}</span>
+    <div></div>
+    결과코드 : <span class = "highlight">${코드()}</span>
+    `,'다시플레이', 'location.reload()')
+  }
+
+  function 시간포멧() {
+      const now = new Date();
+      const day = String(now.getDate()).padStart(2, '0');
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+
+      return `${day}${hours}${minutes}`;
+  }
+
+  function 숫자암호화(input) {
+      const map = { '1': 'A', '2': 'B', '3': 'C', '4': 'D', '5': 'E', '6': 'F', '7': 'G', '8': 'H', '9': 'I', '0': 'J' };
+
+      return input.replace(/[0-9]/g, match => map[match]);
+  }
+
+  function 코드() {
+      // 레벨이 숫자라고 가정하고, 숫자 암호화
+      let result = 숫자암호화(String(레벨));
+      result += '1'
+      result += 숫자암호화(시간포멧());
+      result += '2';
+      return result;
+  }
+
+
   
   function 이동(name, dx, dy) {
     const 요소 = document.querySelector(name);
+
     if (!요소) return;
     const currentX = parseFloat(요소.style.left || 0);
     const currentY = parseFloat(요소.style.top || 0);
     const newX = Math.max(0, Math.min(HTML('#world').offsetWidth - 요소.offsetWidth, currentX + dx));
     const newY = Math.max(0, Math.min(HTML('#world').offsetHeight - 요소.offsetHeight, currentY + dy));
-
     요소.style.left = `${newX}px`;
     요소.style.top = `${newY}px`;
 
@@ -180,6 +344,7 @@
       오브젝트[name].y = newY;
     }
   }
+
   async function 적군거리계산() {
     if (충돌중복방지) {
       const player = HTML('#player');
@@ -202,20 +367,20 @@
           충돌중복방지 = false;
           const 적군Id = 적군.id;
           const 적군오브젝트 = 오브젝트[`#${적군Id}`];
-          적군오브젝트.deg = (적군오브젝트.deg + 180) % 360; // 180도 반전
-
-          // 적군 이동 방향 튕기게 하기
+          적군오브젝트.deg = (적군오브젝트.deg + 180) % 360; 
           const 이동거리 = Math.random() * 20 + 50;
           await 방향이동(적군Id, 적군오브젝트.deg, 이동거리);
 
-          // 충돌 시 알림
           HTML('#player').style.filter = 'brightness(1.1) contrast(1.5)';
-          // 충돌 처리 후 잠시 대기 후 중복 방지 다시 활성화
+          HTML('#score').value -= 1;
           setTimeout(() => {
             충돌중복방지 = true;
             HTML('#player').style.filter = '';
-          }, 500); // 500ms 후에 중복 방지 활성화
-          break; // 한 번 충돌하면 더 이상 체크하지 않도록
+          }, 1000);
+          if(HTML('#score').value == 0){
+            게임오버();
+          }
+          break;
         }
       }
     }
@@ -226,20 +391,20 @@
     if (!keyIntervals[e.key]) {
       if (e.key === 'a') {
         keyIntervals[e.key] = setInterval(() => {
-          이동('#player', -40, 0);
-        }, 250);
+          이동('#player', -30, 0);
+        }, 150);
       } else if (e.key === 'd') {
         keyIntervals[e.key] = setInterval(() => {
-          이동('#player', 40, 0);
-        }, 250);
+          이동('#player', 30, 0);
+        }, 150);
       } else if (e.key === 'w') {
         keyIntervals[e.key] = setInterval(() => {
-          이동('#player', 0, -40);
-        }, 250);
+          이동('#player', 0, -30);
+        }, 150);
       } else if (e.key === 's') {
         keyIntervals[e.key] = setInterval(() => {
-          이동('#player', 0, 40);
-        }, 250);
+          이동('#player', 0, 30);
+        }, 150);
       }
     }
   });
@@ -247,10 +412,10 @@
   document.addEventListener('keyup', (e) => {
     // 키가 떼어지면 interval을 멈추도록
     if (keyIntervals[e.key]) {
-      setTimeout(()=>{
+      setTimeout(() => {
         clearInterval(keyIntervals[e.key]);
         delete keyIntervals[e.key];
-      },250);
+      }, 100);
     }
   });
 
@@ -264,30 +429,23 @@
     for (const key in 오브젝트) {
       const 대상오브젝트 = 오브젝트[key];
       if (!대상오브젝트.name.includes('player')) {
-        // 플레이어와의 방향을 계산 (플레이어를 향해 이동하도록)
         const 적군 = HTML(대상오브젝트.name);
         const 적군Rect = 적군.getBoundingClientRect();
         const 적군X = 적군Rect.left + 적군Rect.width / 2;
         const 적군Y = 적군Rect.top + 적군Rect.height / 2;
-        if(Math.floor(Math.random() * 100) >96-레벨*3){
+        if (Math.floor(Math.random() * 100) > 96 - 레벨 * 2) {
           const 플레이어방향 = Math.atan2(playerY - 적군Y, playerX - 적군X) * (180 / Math.PI);
           대상오브젝트.deg = 플레이어방향
         }
-        else{대상오브젝트.deg += Math.random() * 5.5; }
-        // 이동 범위 및 이동 방향 결정
-        const 이동거리 = Math.random() * 20 + 22 + 레벨*2;
-        // 각도를 거리로 변환
+        else {대상오브젝트.deg += Math.random() * 5.5;}
+        const 이동거리 = Math.random() * 20 + 22 + 레벨 * 2;
         let 이동X = 이동거리 * Math.cos(대상오브젝트.deg * (Math.PI / 180));
         let 이동Y = 이동거리 * Math.sin(대상오브젝트.deg * (Math.PI / 180));
 
         const 월드 = HTML('#world');
         const 월드Rect = 월드.getBoundingClientRect();
-
-        // 충돌 미리 계산 -> 피하기
         const 예상X = 적군Rect.left + 이동X;
         const 예상Y = 적군Rect.top + 이동Y;
-
-        // 벽에 부딪히지 않도록 범위 내로 이동할 수 있는지 확인한 판단값 -> 가능하다면 반전
         const 벽충돌X = 예상X < 월드Rect.left || 예상X + 적군Rect.width > 월드Rect.right;
         const 벽충돌Y = 예상Y < 월드Rect.top || 예상Y + 적군Rect.height > 월드Rect.bottom;
 
@@ -309,8 +467,8 @@
     }
   }
 
-  let 적카운터=0;
-  function 방향이동(name, deg, px) { //혹시나 몰라서 만듦
+  let 적카운터 = 0;
+  function 방향이동(name, deg, px) { 
     const radian = deg * (Math.PI / 180);
     const 이동X = px * Math.cos(radian);
     const 이동Y = px * Math.sin(radian);
@@ -321,39 +479,117 @@
   }
 
   let 레벨 = 1;
-  async function 시작(){
+  async function 시작() {
     기본설정();
-    await setTimeout(()=>{
-      for (let i = 0; i < 10; i++) {
-        setTimeout(() => {
-          // 기존 오브젝트 제거
-          //for (const key in 오브젝트) {
-          //  HTML(오브젝트[key].이름).remove();
-          //  delete 오브젝트[key];
-          //}
-          //console.log('디버그');
-          HTML('#score').innerHTML = '#' + 레벨;
-          HTML('#score').style.animation = 'scoreSet 0.5s ease';  
-          setTimeout(() => {
-            HTML('#score').style.animation = ''; 
-          }, 500);  
-          적군생성(5+레벨);
-          레벨++;
 
-          // 웨이브 시작
-          const 웨이브 = setInterval(() => {
+    await new Promise(resolve => setTimeout(resolve, 100));
+
+    for (let i = 0; i < 10; i++) {
+      if (HTML('#score').value == 0) break;  // 점수가 0일 때 루프 중단
+
+      //alert(HTML('#score').value); // 점수 확인용
+
+      const waver = setTimeout(() => {
+        // 기존 오브젝트 제거 (주석처리된 부분)
+        // for (const key in 오브젝트) {
+        //   HTML(오브젝트[key].이름).remove();
+        //   delete 오브젝트[key];
+        // }
+
+        // 'Stage' 업데이트
+        HTML('#stage').innerHTML = 'Stage ' + 레벨;
+        HTML('#stage').style.animation = 'stageSet 0.5s ease';
+        setTimeout(() => {
+          HTML('#stage').style.animation = '';
+        }, 500);
+
+        적군생성(4 + 레벨);
+        레벨++;
+
+        // 웨이브 시작
+        const 웨이브 = setInterval(() => {
+          if (HTML('#score').value == 0) {  // 점수가 0이면 웨이브 중지
+            clearInterval(웨이브);
+          } else {
             적군이동();
             적군거리계산();
-          }, 150);
+          }
+        }, 150);
 
-          // 60초 후 웨이브 종료
-          setTimeout(() => { clearInterval(웨이브); }, 5000);
-        }, i * 5000); // 각 레벨마다 60초 간격으로 시작
-      }
-    },100)
+        // 5초 후에 웨이브 종료
+        setTimeout(() => {
+          clearInterval(웨이브);
+        }, 5000);
+
+      }, i * 5000);
+    }
   }
 
   시작();
 
+  function HTML(name) {
+      return document.querySelector(name); // 'name'을 제대로 선택하는 함수 작성
+  }
 
+  async function textEffect(name, content, speed) {
+      const element = HTML(name); // 해당 이름의 요소를 선택
+      if (!element) {
+          console.error(`요소 ${name}을 찾을 수 없습니다.`);
+          return;
+      }
+
+      let processedContent = '';
+      let index = 0;
+
+      while (index < content.length) {
+          const char = content[index];
+
+          // HTML 태그를 감지하여 처리
+          if (char === '<') {
+              processedContent += char;
+              index++; // '<' 이후에 계속 태그를 처리
+              while (content[index] !== '>' && index < content.length) {
+                  processedContent += content[index];
+                  index++;
+              }
+              processedContent += '>';
+          } else {
+              processedContent += char;
+          }
+
+          // 텍스트를 타이핑하는 효과를 적용
+          element.innerHTML = processedContent + '●'; // '●' 추가
+          if (content[index] !== ' ') {
+              await new Promise(resolve => setTimeout(resolve, speed));
+          }
+
+          index++; // 인덱스 증가
+      }
+
+      // 마지막 '●' 제거
+      element.innerHTML = processedContent;
+  }
+
+  async function windowAlert(title,content,act,work) {
+      HTML('body').innerHTML +=
+          `
+          <div class = "window-holder">
+          <div id = "window">
+          <center>
+          <div style = "font-size:20px;font-weight:bold">${title}</div>
+          <div style = "height:20px;"></div>
+          <p id = "window-cont"></p>
+          <div style = "height:20px;"></div>
+          <button onclick=${(work=='close')?"HTML('.window-holder').remove();":work} id="close">${act}</button>
+          </center>
+          </div>
+          </div>
+          `
+      await textEffect('#window-cont', content, 50);
+      HTML('#close').style.opacity = 0;
+      HTML('#close').style.display = 'block';
+      await new Promise(resolve => setTimeout(resolve, 10))
+      HTML('#close').style.opacity = 1;
+
+  }
 </script>
