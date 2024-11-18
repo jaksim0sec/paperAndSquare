@@ -815,7 +815,7 @@ let 스킬쿨타임 = false;
           setTimeout(() => {
             HTML('#stage').style.animation = '';
           }, 500);
-          let 적군생성량 = 8+레벨;
+          let 적군생성량 = 10+Math.round(레벨*1.5);
           if(skillType.includes('lower')){적군생성량 = Math.round(적군생성량*=(8/10))}
           적군생성(적군생성량);
           레벨++;
