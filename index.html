@@ -107,7 +107,8 @@
     border-width: 0px 7px 15px 7px;
     border-color: transparent transparent #e7e5fa transparent;
     animation: show 1s ease-in-out;
-    transform-origin: center center; /* 삼각형 회전 중심을 설정 */
+    transform-origin: center center;
+    transition: all 0.5s ease, transform 2s ease;
   }
 
   @keyframes show {
@@ -123,7 +124,7 @@
 
   @keyframes stageSet {
     50% {
-      transform: scale(1) translateY(-10px);
+      transform: scale(1) translateY(-15px);
     }
 
     100% {
@@ -136,22 +137,22 @@
       filter: blur(0);
     }
     30% {
-      transform: scale(1.2) rotate(10deg);
+      transform: scale(1.2) rotate(45deg);
       opacity: 1;
       filter: blur(2px);
     }
     50% {
-      transform: scale(1.5) rotate(-20deg);
+      transform: scale(1.5) rotate(90deg);
       opacity: 0.8;
       filter: blur(4px);
     }
     70% {
-      transform: scale(1) rotate(15deg);
+      transform: scale(1) rotate(135deg);
       opacity: 0.5;
       filter: blur(6px);
     }
     100% {
-      transform: scale(0) rotate(360deg);
+      transform: scale(0) rotate(180deg);
       opacity: 0;
       filter: blur(10px);
     }
@@ -162,14 +163,14 @@
     color: white;
     font-size: 40px;
     font-weight: bold;
-    transition: all 0.5s ease;
+    transition: all 1s ease;
     position: absolute;
     width: 200px;
     z-index: 100;
   }
 
   #score {
-    transition: all 0.5s ease;
+    transition: all 1s ease;
     margin: 135px 12px;
     color: #ffffff80;
     font-size: 30px;
@@ -218,6 +219,7 @@
     transition: height 0.5s ease;
     background-color: #25222180;
     color: #ffffffcc;
+    backdrop-filter: blur(5px);
   }
 
   .window-holder {
@@ -230,6 +232,7 @@
     align-items: center;
     justify-content: center;
     z-index: 100;
+    backdrop-filter: blur(2px);
   }
 
   #close {
@@ -265,8 +268,9 @@
     }
   }
   button:hover {
-    background-color: #00000030;
+    background-color: #FFFFFF10;
     transform: translateY(-3px) scale(1.02);
+    filter : brightness(1.5);
   }
 
   button:active {
@@ -292,17 +296,23 @@
     border-radius: 50%;
     box-shadow: 4px 4px 4px #554698, inset -3px -3px 5px #da891f90;
     z-index: 0;
-    animation: 폭탄생성 0.5s ease-out;
+    animation: 폭탄생성 0.8s ease-out;
   }
   @keyframes 폭탄생성 {
     0% {
       transform: translate(0, 0) scale(1.1);
     }
-    50% {
+    28% {
       transform: translate(0, -15px) scale(1.1);
     }
-    100% {
+    65% {
       transform: translate(0, 0) scale(1);
+    }
+    85% {
+      filter:brightness(1.5)
+    }
+    100% {
+      filter:brightness(1)
     }
   }
 
@@ -337,7 +347,45 @@
     }
     100% {
       background-color: rgba(255, 85, 85, 0);
-      transform: scale(8);
+      transform: scale(15);
+      opacity: 0;
+      box-shadow: 0 0 10px 5px rgba(255, 85, 85, 0.8); 
+    }
+}
+
+@keyframes 개쩖폭발 {
+    0% {
+      background-color: rgba(255, 85, 85, 1);
+      transform: scale(1);
+      opacity: 1;
+      box-shadow: 0 0 4px 2px rgba(255, 85, 85, 0.7),
+        0 0 6px 3px rgba(255, 140, 0, 0.5);
+    }
+    30% {
+      background-color: rgba(255, 105, 105, 1);
+      transform: scale(30);
+      border-radius:10px;
+      opacity: 0.8;
+      box-shadow: 0 0 4px 2px rgba(255, 85, 85, 0.8),
+        0 0 6px 3px rgba(255, 140, 0, 0.4); 
+    }
+    50% {
+      background-color: rgba(255, 120, 120, 1);
+      transform: scale(10);
+      opacity: 0.6;
+      box-shadow: 0 0 6px 3px rgba(255, 120, 120, 0.8),
+        0 0 8px 4px rgba(255, 85, 85, 0.5); 
+    }
+    80% {
+      background-color: rgba(255, 85, 85, 1);
+      transform: scale(50);
+      opacity: 0.4;
+      box-shadow: 0 0 8px 4px rgba(255, 85, 85, 0.8),
+        0 0 10px 5px rgba(255, 140, 0, 0.6);
+    }
+    100% {
+      background-color: rgba(255, 85, 85, 0);
+      transform: scale(100);
       opacity: 0;
       box-shadow: 0 0 10px 5px rgba(255, 85, 85, 0.8); 
     }
@@ -356,7 +404,7 @@
 }
 
 .highlight {
-    color: #FFE7B3;
+    color: #FFD793;
 }
 
 .abilities-section {
@@ -367,13 +415,14 @@
 .skill-card {
     margin: 5px;
     padding: 5px;
-    background-color: #25222199;
+    background-color: #2F2B2A99;
     color: white;
     border-radius: 5px;
     text-align: center;
     transition:all 0.5s ease;
     animation:show 0.5s ease;
     font-size:15px;
+    border: 5px solid #FFFFFF00;
 }
 
 .section-title {
@@ -381,8 +430,10 @@
 }
 
 .skill-card:hover{
-    transform : scale(1.02) translateY(-5px);
-    filter : brightness(1.2);
+    transform : scale(1.04) translateY(-8px);
+    filter : brightness(1.5);
+    border: 5px solid #2F2B2A;
+    box-sizing: border-box;
   }  
 
   .skill-card:active{
@@ -393,7 +444,7 @@
 
 <div id="world">
   <div id="name" onclick="window.location.href='park0sec.vercel.app'">
-    @개발자 • 샛별코딩동아리회장
+    @샛별코딩동아리회장
   </div>
   <div id="player_range">
     <div id="player">
@@ -499,15 +550,16 @@
     windowAlert(
       '게임오버',
       `
-    게임이 끝났습니다. 
+    사망하였습니다 😓
     <div style = "margin:20px;"><hr style="width: 30%; height: 2px; background-color: #FFFFFF50; border: none;">
   </div>
-    점수 : <span class = "highlight">${최종점수}</span>
+    🏆점수 • <span class = "highlight">${최종점수}</span>${(admin)?' (관리자모드)':''}
     <div></div>
-    결과코드 : <span class = "highlight">${코드()}</span>
+    📜결과코드 • <span class = "highlight">${코드()}</span>
+    <div></div><div style = "font-size:12px">(옆에 배치된 포스트잇에 이 코드를 적고 보상을 받으러 가보세요!)</div>
     `,
       '다시플레이',
-      '/*location.reload()*/window.alert(`관리자에게 요청하십시오`);'
+      '/*location.reload()*/window.alert(`동아리 부원에게 요청해주세요! 플레이 횟수를 맞추기 위함입니다!`);'
     );
     HTML('#world').style.filter = ``;
   }
@@ -542,6 +594,7 @@
     let result = 'Z1' + 숫자암호화(String(최종점수));
     result += '2';
     result += 숫자암호화(시간포멧());
+    result += (admin)?'RRM':''
     return result;
   }
 
@@ -615,6 +668,7 @@
       }
     }
   }
+let admin = false;
 let 스킬쿨타임 = false;
   function 토글(str, word) { //귀차니즘
   if (str.includes(word)) {
@@ -671,61 +725,88 @@ let 스킬쿨타임 = false;
     }
   });
 
+  function 랜덤(min, max, seed = Date.now()) {
+    //시드알고리즘 퍼옴
+  let state = seed;
+  const random = () => {
+    state = (state * 16807) % 2147483647;
+    return state / 2147483647;
+  };
+  return Math.floor(random() * (max - min + 1)) + min;
+}
+
   function 적군이동() {
-    const player = HTML('#player');
-    const playerRect = player.getBoundingClientRect();
-    const playerX = playerRect.left + playerRect.width / 2;
-    const playerY = playerRect.top + playerRect.height / 2;
+  const player = HTML('#player');
+  const playerRect = player.getBoundingClientRect();
+  const playerX = playerRect.left + playerRect.width / 2;
+  const playerY = playerRect.top + playerRect.height / 2;
 
-    for (const key in 오브젝트) {
-      const 대상오브젝트 = 오브젝트[key];
-      if (!대상오브젝트.name.includes('player')) {
-        if (!대상오브젝트.alive) {
-          continue;
-        }
-        const 적군 = HTML(대상오브젝트.name);
-        const 적군Rect = 적군.getBoundingClientRect();
-        const 적군X = 적군Rect.left + 적군Rect.width / 2;
-        const 적군Y = 적군Rect.top + 적군Rect.height / 2;
-        if (Math.floor(Math.random() * 100) > 96 - 레벨 * 3) {
-          const 플레이어방향 =
-            Math.atan2(playerY - 적군Y, playerX - 적군X) * (180 / Math.PI);
-          대상오브젝트.deg = 플레이어방향;
-        } else {
-          대상오브젝트.deg += Math.random() * 5.5;
-        }
-        let 이동거리 = Math.random() * 20 + 20 + 레벨 * 12;
-        if(skillType.includes('lower')){이동거리 *= (15/10)}
-        let 이동X = 이동거리 * Math.cos(대상오브젝트.deg * (Math.PI / 180));
-        let 이동Y = 이동거리 * Math.sin(대상오브젝트.deg * (Math.PI / 180));
-
-        const 월드 = HTML('#world');
-        const 월드Rect = 월드.getBoundingClientRect();
-        const 예상X = 적군Rect.left + 이동X;
-        const 예상Y = 적군Rect.top + 이동Y;
-        const 벽충돌X =
-          예상X < 월드Rect.left || 예상X + 적군Rect.width > 월드Rect.right;
-        const 벽충돌Y =
-          예상Y < 월드Rect.top || 예상Y + 적군Rect.height > 월드Rect.bottom;
-        이동(대상오브젝트.name, 이동X, 이동Y);
-        if (벽충돌X) {
-          대상오브젝트.deg = 180 - 대상오브젝트.deg;
-          이동X = -이동X;
-        }
-        if (벽충돌Y) {
-          대상오브젝트.deg = 360 - 대상오브젝트.deg;
-          이동Y = -이동Y;
-        }
-        // 회전 효과를 부드럽게 설정
-        HTML(대상오브젝트.name).style.transition =
-          'all 2s linear, transform 1s ease';
-        HTML(대상오브젝트.name).style.transform = `rotate(${
-          대상오브젝트.deg + 90
-        }deg)`;
+  for (const key in 오브젝트) {
+    const 대상오브젝트 = 오브젝트[key];
+    if (!대상오브젝트.name.includes('player')) {
+      if (!대상오브젝트.alive) {
+        continue;
       }
+      const 적군 = HTML(대상오브젝트.name);
+      const 적군Rect = 적군.getBoundingClientRect();
+      const 적군X = 적군Rect.left + 적군Rect.width / 2;
+      const 적군Y = 적군Rect.top + 적군Rect.height / 2;
+
+      if (Math.floor(Math.random() * 100) > 96 - 레벨 * 2) {
+        const 플레이어방향 =
+          Math.atan2(playerY - 적군Y, playerX - 적군X) * (180 / Math.PI);
+        대상오브젝트.deg = 플레이어방향;
+      } else {
+        대상오브젝트.deg += Math.random() * 5.5;
+      }
+      //대상오브젝트.deg*=(랜덤(0.95,1.05)/**(레벨*0.1)*/)
+
+      let 이동거리 = Math.random() * 20 + 20 + 레벨 * 12;
+      if (skillType.includes('lower')) {
+        이동거리 *= 1.5;
+      }
+      let 이동X = 이동거리 * Math.cos(대상오브젝트.deg * (Math.PI / 180));
+      let 이동Y = 이동거리 * Math.sin(대상오브젝트.deg * (Math.PI / 180));
+
+      const 월드 = HTML('#world');
+      const 월드Rect = 월드.getBoundingClientRect();
+
+      const 예상X = 적군Rect.left + 이동X;
+      const 예상Y = 적군Rect.top + 이동Y;
+
+      // 벽까지 남은 거리 계산
+      const 남은거리X = 예상X < 월드Rect.left
+        ? 월드Rect.left - 적군Rect.left
+        : 예상X + 적군Rect.width > 월드Rect.right
+        ? 월드Rect.right - (적군Rect.left + 적군Rect.width)
+        : 이동X;
+
+      const 남은거리Y = 예상Y < 월드Rect.top
+        ? 월드Rect.top - 적군Rect.top
+        : 예상Y + 적군Rect.height > 월드Rect.bottom
+        ? 월드Rect.bottom - (적군Rect.top + 적군Rect.height)
+        : 이동Y;
+
+      if (Math.abs(남은거리X) < Math.abs(이동X)) {
+        이동X = 남은거리X;
+        대상오브젝트.deg = 180 - 대상오브젝트.deg;
+      }
+
+      if (Math.abs(남은거리Y) < Math.abs(이동Y)) {
+        이동Y = 남은거리Y;
+        대상오브젝트.deg = 360 - 대상오브젝트.deg;
+      }
+
+      이동(대상오브젝트.name, 이동X, 이동Y);
+
+      HTML(대상오브젝트.name).style.transition =
+        'all 2s linear, transform 1s ease';
+      HTML(대상오브젝트.name).style.transform = `rotate(${
+        대상오브젝트.deg + 90
+      }deg)`;
     }
   }
-
+}
   let 적카운터 = 0;
   function 방향이동(name, deg, px) {
     const radian = deg * (Math.PI / 180);
@@ -760,11 +841,11 @@ let 스킬쿨타임 = false;
 </div>
 
 <div>
-    체력이 0점이 되면 사망합니다.
+    체력이 <span class = "highlight">0점</span>이 되면 사망합니다.
 </div>
 
 <div>
-    종이비행기들로부터 최대한 오래 살아남아보세요!
+    <span class = "highlight">종이비행기</span>들로부터 최대한 오래 살아남아보세요!
 </div>
 
 <div class="separator">
@@ -774,7 +855,7 @@ let 스킬쿨타임 = false;
 <div class="abilities-section">
     <span class="section-title">▶능력선택◀</span>
     <div style = "font-size:13px;margin-bottom:10px;">
-        (<span class="highlight">신중하게</span> 선택해보세요! 스킬선택시 수량만큼 점수감점)
+        (<span class="highlight">여러개</span>도 선택 가능해요! 스킬개수 만큼의 <span class = "highlight">점수감점</span> 조심하세요!)
     </div>
 
     <div class="skill-cards">
@@ -810,11 +891,11 @@ let 스킬쿨타임 = false;
         // 'Stage' 업데이트
         if (!(HTML('#score').value == 0)) {
           HTML('#stage').innerHTML = 'Stage ' + 레벨;
-          HTML('#stage').style.animation = 'stageSet 0.5s ease';
+          HTML('#stage').style.animation = 'stageSet 0.8s ease';
           HTML('#world').style.filter = `contrast(${1 + (레벨 - 1) * 0.1})`;
           setTimeout(() => {
             HTML('#stage').style.animation = '';
-          }, 500);
+          }, 800);
           let 적군생성량 = 10+Math.round(레벨*1.5);
           if(skillType.includes('lower')){적군생성량 = Math.round(적군생성량*=(8/10))}
           적군생성(적군생성량);
@@ -895,7 +976,7 @@ let 스킬쿨타임 = false;
     windowContent.innerHTML = centerContent;
     windowHolder.appendChild(windowContent);
     document.body.appendChild(windowHolder);
-    await textEffect('#window-cont', content, 20);
+    await textEffect('#window-cont', content, 18);
 
     const closeButton = document.querySelector('#close');
     closeButton.style.opacity = 0;
@@ -925,7 +1006,7 @@ let 스킬쿨타임 = false;
       console.error(`대상 ${대상이름}을(를) 찾을 수 없습니다.`);
       return; //이유는 모르겠는데 자꾸 null 됨
     }
-    대상.style.animation = '폭발 0.8s ease-out forwards';
+    대상.style.animation = `${(admin)?'개쩖폭발':'폭발'} 0.8s ease-out forwards`;
     const 폭발확인 = setInterval(() => {
       const 폭발범위 = 대상.getBoundingClientRect();
       for (const key in 오브젝트) {
