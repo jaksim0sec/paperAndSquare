@@ -104,11 +104,11 @@
     width: 0;
     height: 0;
     border-style: solid;
-    border-width: 0px 7px 15px 7px;
+    border-width: 0px 6px 13px 6px;
     border-color: transparent transparent #e7e5fa transparent;
     animation: show 1s ease-in-out;
     transform-origin: center center;
-    transition: all 0.5s ease, transform 2s ease;
+    transition: all 0.15s ease, transform 3s ease-out;
   }
 
   @keyframes show {
@@ -468,6 +468,17 @@
     return document.querySelector(name);
   }
 
+  function 랜덤(min, max) {
+  let state = Date.now() + Math.random() * 1000000;//최대한 다르게
+  const random = () => {
+    state = (state * 16807) % 2147483647;
+    return state / 2147483647;
+  };
+  return Math.floor(random() * (max - min + 1)) + min;
+}
+
+
+
   // 게임 함수 설정
   const 설정객체 = {
     주인공크기: { x: 20, y: 20 },
@@ -531,8 +542,13 @@
         x: randomX,
         y: randomY,
         alive: true,
+        type:'norm',
         deg: Math.floor(Math.random() * 180) + 1,
       };
+      if(랜덤(1,40)>(40-레벨*1)){
+        HTML(`#enemy${적카운터}`).style.borderColor = 'transparent transparent black transparent';
+        오브젝트[`#enemy${적카운터}`].type = 'spec'
+      }
     }
   }
   let 최종점수 = 0
@@ -724,17 +740,6 @@ let 스킬쿨타임 = false;
       }, 100);
     }
   });
-
-  function 랜덤(min, max, seed = Date.now()) {
-    //시드알고리즘 퍼옴
-  let state = seed;
-  const random = () => {
-    state = (state * 16807) % 2147483647;
-    return state / 2147483647;
-  };
-  return Math.floor(random() * (max - min + 1)) + min;
-}
-
   function 적군이동() {
   const player = HTML('#player');
   const playerRect = player.getBoundingClientRect();
@@ -757,13 +762,16 @@ let 스킬쿨타임 = false;
           Math.atan2(playerY - 적군Y, playerX - 적군X) * (180 / Math.PI);
         대상오브젝트.deg = 플레이어방향;
       } else {
-        대상오브젝트.deg += Math.random() * 5.5;
+        대상오브젝트.deg += Math.random() * 4.5;
       }
       //대상오브젝트.deg*=(랜덤(0.95,1.05)/**(레벨*0.1)*/)
 
-      let 이동거리 = Math.random() * 20 + 20 + 레벨 * 12;
+      let 이동거리 = Math.random() * 20 + 15 + 레벨 * 12;
       if (skillType.includes('lower')) {
         이동거리 *= 1.5;
+      }
+      if(대상오브젝트.type == 'spec'){
+        이동거리 *= 2;
       }
       let 이동X = 이동거리 * Math.cos(대상오브젝트.deg * (Math.PI / 180));
       let 이동Y = 이동거리 * Math.sin(대상오브젝트.deg * (Math.PI / 180));
@@ -918,9 +926,6 @@ let 스킬쿨타임 = false;
     }
   }
 
-  function HTML(name) {
-    return document.querySelector(name);
-  }
   async function textEffect(name, content, speed) {
     const element = HTML(name);
     if (!element) {
