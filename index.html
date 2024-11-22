@@ -711,7 +711,7 @@ let 스킬쿨타임 = false;
         keyIntervals[e.key] = setInterval(() => {
           이동('#player', 0, playerSpeed);
         }, 150);
-      } else if (e.key === 'q' && skillType.includes('bomb')) {
+      } else if (e.key === ' ' && skillType.includes('bomb')) {
     if (!스킬쿨타임) {
         폭탄배치(오브젝트['#player'].x, 오브젝트['#player'].y); 
         스킬쿨타임 = true;
@@ -867,7 +867,7 @@ let 스킬쿨타임 = false;
     </div>
 
     <div class="skill-cards">
-      <div class="skill-card" id="skill-card1" onclick='skillType = 토글(skillType,"bomb,"); HTML("#skill-card1").innerHTML = 토글(HTML("#skill-card1").innerHTML, "←선택됨")'><span class="highlight">Q키</span>를 눌러 1초 <span class="highlight">미니시한폭탄</span>을 설치</div>
+      <div class="skill-card" id="skill-card1" onclick='skillType = 토글(skillType,"bomb,"); HTML("#skill-card1").innerHTML = 토글(HTML("#skill-card1").innerHTML, "←선택됨")'><span class="highlight">스페이스키</span>를 눌러 1초 <span class="highlight">미니시한폭탄</span>을 설치</div>
 <div class="skill-card" id="skill-card2" onclick='skillType = 토글(skillType,"stren,"); HTML("#skill-card2").innerHTML = 토글(HTML("#skill-card2").innerHTML, "←선택됨")'>체력이 <span class="highlight">2</span>증가, 속도가 <span class="highlight">50%</span>증가</div>
 <div class="skill-card" id="skill-card3" onclick='skillType = 토글(skillType,"lower,"); HTML("#skill-card3").innerHTML = 토글(HTML("#skill-card3").innerHTML, "←선택됨")'>종이비행기의 속도 <span class="highlight">15%</span>증가, 개수 <span class="highlight">20%</span>감소</div>
 
