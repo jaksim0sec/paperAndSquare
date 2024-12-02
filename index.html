@@ -1,1049 +1,1053 @@
 <head>
-  <link rel="shortcut icon" href="https://ifh.cc/g/69rynC.png" />
-  <meta charset="UTF-8" />
-  <title>꽁꽁 얼어붙은 한강 위에 종이비행기가</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=IBM+Plex+Sans+KR&family=Jua&display=swap"
-    rel="stylesheet"
-  />
+<link rel="shortcut icon" href="https://ifh.cc/g/69rynC.png" />
+<meta charset="UTF-8" />
+<title>꽁꽁 얼어붙은 한강 위에 종이비행기가</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=IBM+Plex+Sans+KR&family=Jua&display=swap"
+  rel="stylesheet"
+/>
 </head>
 
 <style>
-  body {
-    margin: 0;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: black;
-    overflow: hidden;
-  }
+body {
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+  overflow: hidden;
+}
 
-  #world {
-    background: linear-gradient(135deg, #aca1ff, #9283ff, #7f6efd);
-    border-radius: 10px;
-    overflow: hidden;
-    position: absolute;
-    min-width: 90vw;
-    min-height: 90vh;
-    box-shadow: inset -10px -10px 10px #00000040, inset 5px 5px 10px #ffffff40;
-    transition: all 0.2s ease;
-  }
+#world {
+  background: linear-gradient(135deg, #aca1ff, #9283ff, #7f6efd);
+  border-radius: 10px;
+  overflow: hidden;
+  position: absolute;
+  min-width: 90vw;
+  min-height: 90vh;
+  box-shadow: inset -10px -10px 10px #00000040, inset 5px 5px 10px #ffffff40;
+  transition: all 0.2s ease;
+}
 
-  #world * {
-    filter: none;
-  }
+#world * {
+  filter: none;
+}
 
-  .object {
-    position: absolute;
-  }
+.object {
+  position: absolute;
+}
 
-  #player {
-    position: absolute;
-    background-color: transparent;
-    box-shadow: 5px 5px 3px #00000050;
-    transition: all 0.2s ease, width 1s ease, height 1s ease;
-    border-radius: 5px;
-    z-index: 1;
-  }
+#player {
+  position: absolute;
+  background-color: transparent;
+  box-shadow: 5px 5px 3px #00000050;
+  transition: all 0.2s ease, width 1s ease, height 1s ease;
+  border-radius: 7px;
+  z-index: 1;
+}
 
-  #player div {
-    position: absolute;
-    background: linear-gradient(
-      135deg,
-      #fdd8aa,
-      #ffd07e,
-      #fcbf57,
-      #ffab44,
-      #ffab44
-    );
-    transition: all 1s ease-out, width 1s ease, height 1s ease;
-    border: none;
-    border-radius: 5px;
-    box-shadow: inset -2px -2px 2px #da891f90, inset -22px -22px 2px #ffffff50;
-    width: 20px;
-    height: 20px;
-    animation: show 1s ease-in-out;
-  }
+#player div {
+  position: absolute;
+  background: linear-gradient(
+    135deg,
+    #fdd8aa,
+    #ffd07e,
+    #fcbf57,
+    #ffab44,
+    #ffab44,
+    #FF9830,
+    #FF8000
+  );
+  transition: all 1s ease-out, width 1s ease, height 1s ease;
+  border: none;
+  border-radius: 7px;
+  box-shadow: inset -2px -2px 2px #da891f90, inset -22px -22px 2px #ffffff50;
+  width: 20px;
+  height: 20px;
+  animation: show 1s ease-in-out;
+}
 
-  #fakePlayer {
-    background: linear-gradient(
-      135deg,
-      #fdd8aa,
-      #ffd07e,
-      #fcbf57,
-      #ffab44,
-      #ffab44
-    );
-    transition: all 1s ease-out, width 1s ease, height 1s ease;
-    border: none;
-    border-radius: 5px;
-    box-shadow: inset -2px -2px 2px #da891f90, inset -22px -22px 2px #ffffff50;
-    width: 20px;
-    height: 20px;
-    animation: show 1s ease-in-out;
-  }
+#fakePlayer {
+  background: linear-gradient(
+    135deg,
+    #fdd8aa,
+    #ffd07e,
+    #fcbf57,
+    #ffab44,
+    #ffab44
+  );
+  transition: all 1s ease-out, width 1s ease, height 1s ease;
+  border: none;
+  border-radius: 7px;
+  box-shadow: inset -2px -2px 2px #da891f90, inset -22px -22px 2px #ffffff50;
+  width: 20px;
+  height: 20px;
+  animation: show 1s ease-in-out;
+}
 
-  /*#player::after{
-    content: '';
-    position: absolute;
-    top: -12px;
-    left: -12px;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 2px solid rgba(255, 0, 0, 0.3);
-  
-  }*/
-  .enemy {
-    z-index: 5;
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 0px 6px 13px 6px;
-    border-color: transparent transparent #e7e5fa transparent;
-    animation: show 1s ease-in-out;
-    transform-origin: center center;
-    transition: all 0.15s ease, transform 3s ease-out;
-  }
+/*#player::after{
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: -12px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 0, 0, 0.3);
 
-  @keyframes show {
-    0% {
-      opacity: 0;
-      transform: scale(0.5);
-    }
+}*/
+.enemy {
+  z-index: 5;
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0px 6px 13px 6px;
+  border-color: transparent transparent #e7e5fa transparent;
+  animation: show 1s ease-in-out;
+  transform-origin: center center;
+  transition: all 0.15s ease, transform 3s ease-out;
+}
 
-    100% {
-      opacity: 1;
-    }
-  }
-
-  @keyframes stageSet {
-    50% {
-      transform: scale(1) translateY(-15px);
-    }
-
-    100% {
-    }
-  }
-  @keyframes 적죽음 {
-    0% {
-      transform: scale(1) rotate(0deg);
-      opacity: 1;
-      filter: blur(0);
-    }
-    30% {
-      transform: scale(1.2) rotate(45deg);
-      opacity: 1;
-      filter: blur(2px);
-    }
-    50% {
-      transform: scale(1.5) rotate(90deg);
-      opacity: 0.8;
-      filter: blur(4px);
-    }
-    70% {
-      transform: scale(1) rotate(135deg);
-      opacity: 0.5;
-      filter: blur(6px);
-    }
-    100% {
-      transform: scale(0) rotate(180deg);
-      opacity: 0;
-      filter: blur(10px);
-    }
-  }
-
-  #stage {
-    margin: 8px 12px;
-    color: white;
-    font-size: 40px;
-    font-weight: bold;
-    transition: all 1s ease;
-    position: absolute;
-    width: 200px;
-    z-index: 100;
-  }
-
-  #score {
-    transition: all 1s ease;
-    margin: 135px 12px;
-    color: #ffffff80;
-    font-size: 30px;
-    font-weight: bold;
-    position: absolute;
-    z-index: 100;
-  }
-
-  progress {
-    width: 150px;
-    height: 10px;
-    border-radius: 10px;
-    border: none;
-    background-color: rgba(255, 255, 255, 0.1);
-    appearance: none;
-  }
-
-  progress::-webkit-progress-bar {
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-  }
-
-  progress::-webkit-progress-value {
-    transition: all 0.5s ease;
-    background-color: rgba(255, 255, 255, 0.5);
-    border-radius: 10px;
-  }
-
-  progress::-moz-progress-bar {
-    transition: all 0.5s ease;
-    background-color: rgba(255, 255, 255, 0.5);
-    border-radius: 10px;
-  }
-  #window {
-    position: absolute;
-    z-index: 10;
-    width: 400px;
-    border-radius: 15px;
-    padding: 20px;
-    box-shadow: 0px 0px 5px #00000030;
-    display: flexbox;
-    justify-content: center;
-    justify-items: center;
-    align-items: center;
-    align-content: center;
-    transition: height 0.5s ease;
-    background-color: #25222180;
-    color: #ffffffcc;
-    backdrop-filter: blur(5px);
-  }
-
-  .window-holder {
-    position: absolute;
-    z-index: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: #00000080;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 100;
-    backdrop-filter: blur(2px);
-  }
-
-  #close {
-    transition: all 0.5s ease;
-    display: none;
-  }
-  #window-cont {
-    width: 390px;
-  }
-
-  button {
-    border-radius: 20px;
-    background-color: #00000060;
-    color: #ffffffcc;
-    font-weight: bold;
-    transition: all 0.3s ease;
-    padding: 8px 16px;
-    border: none;
-    height: 46px;
-    width: 200px;
-    font-size: 16px;
-    cursor: pointer;
+@keyframes show {
+  0% {
     opacity: 0;
-    animation: showB 0.5s ease-in-out;
+    transform: scale(0.5);
   }
 
-  @keyframes showB {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
+  100% {
+    opacity: 1;
   }
-  button:hover {
-    background-color: #FFFFFF10;
-    transform: translateY(-3px) scale(1.02);
-    filter : brightness(1.5);
+}
+
+@keyframes stageSet {
+  50% {
+    transform: scale(1) translateY(-15px);
   }
 
-  button:active {
-    transform: scale(0.95);
+  100% {
   }
+}
+@keyframes 적죽음 {
+  0% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+    filter: blur(0);
+  }
+  30% {
+    transform: scale(1.2) rotate(45deg);
+    opacity: 1;
+    filter: blur(2px);
+  }
+  50% {
+    transform: scale(1.5) rotate(90deg);
+    opacity: 0.8;
+    filter: blur(4px);
+  }
+  70% {
+    transform: scale(1) rotate(135deg);
+    opacity: 0.5;
+    filter: blur(6px);
+  }
+  100% {
+    transform: scale(0) rotate(180deg);
+    opacity: 0;
+    filter: blur(10px);
+  }
+}
 
-  #name {
-    position: absolute;
-    bottom: 15px;
-    right: 15px;
-    font-weight: bold;
-    color: #ffffff60;
-  }
-  .highlight {
-    font-weight: bold;
-  }
+#stage {
+  margin: 8px 12px;
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  transition: all 1s ease;
+  position: absolute;
+  width: 200px;
+  z-index: 100;
+}
 
-  .bomb {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    background-color: #ffe8c9;
-    border-radius: 50%;
-    box-shadow: 4px 4px 4px #554698, inset -3px -3px 5px #da891f90;
-    z-index: 0;
-    animation: 폭탄생성 0.8s ease-out;
-  }
-  @keyframes 폭탄생성 {
-    0% {
-      transform: translate(0, 0) scale(1.1);
-    }
-    28% {
-      transform: translate(0, -15px) scale(1.1);
-    }
-    65% {
-      transform: translate(0, 0) scale(1);
-    }
-    85% {
-      filter:brightness(1.5)
-    }
-    100% {
-      filter:brightness(1)
-    }
-  }
+#score {
+  transition: all 1s ease;
+  margin: 135px 12px;
+  color: #ffffff80;
+  font-size: 30px;
+  font-weight: bold;
+  position: absolute;
+  z-index: 100;
+}
 
-  @keyframes 폭발 {
-    0% {
-      background-color: rgba(255, 85, 85, 1);
-      transform: scale(1);
-      opacity: 1;
-      box-shadow: 0 0 4px 2px rgba(255, 85, 85, 0.7),
-        0 0 6px 3px rgba(255, 140, 0, 0.5);
-    }
-    30% {
-      background-color: rgba(255, 105, 105, 1);
-      transform: scale(2);
-      opacity: 0.8;
-      box-shadow: 0 0 4px 2px rgba(255, 85, 85, 0.8),
-        0 0 6px 3px rgba(255, 140, 0, 0.4); 
-    }
-    50% {
-      background-color: rgba(255, 120, 120, 1);
-      transform: scale(4);
-      opacity: 0.6;
-      box-shadow: 0 0 6px 3px rgba(255, 120, 120, 0.8),
-        0 0 8px 4px rgba(255, 85, 85, 0.5); 
-    }
-    80% {
-      background-color: rgba(255, 85, 85, 1);
-      transform: scale(6);
-      opacity: 0.4;
-      box-shadow: 0 0 8px 4px rgba(255, 85, 85, 0.8),
-        0 0 10px 5px rgba(255, 140, 0, 0.6);
-    }
-    100% {
-      background-color: rgba(255, 85, 85, 0);
-      transform: scale(15);
-      opacity: 0;
-      box-shadow: 0 0 10px 5px rgba(255, 85, 85, 0.8); 
-    }
+progress {
+  width: 150px;
+  height: 10px;
+  border-radius: 10px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.1);
+  appearance: none;
+}
+
+progress::-webkit-progress-bar {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+progress::-webkit-progress-value {
+  transition: all 0.5s ease;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+}
+
+progress::-moz-progress-bar {
+  transition: all 0.5s ease;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+}
+#window {
+  position: absolute;
+  z-index: 10;
+  width: 400px;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 0px 5px #00000030;
+  display: flexbox;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  align-content: center;
+  transition: height 0.5s ease;
+  background-color: #25222180;
+  color: #FFF2E1;
+  backdrop-filter: blur(5px);
+}
+
+.window-holder {
+  position: absolute;
+  z-index: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #00000080;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  backdrop-filter: blur(2px);
+}
+
+#close {
+  transition: all 0.5s ease;
+  display: none;
+}
+#window-cont {
+  width: 390px;
+}
+
+button {
+  border-radius: 20px;
+  background-color: #00000060;
+  color: #ffffffcc;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  padding: 8px 16px;
+  border: none;
+  height: 46px;
+  width: 200px;
+  font-size: 16px;
+  cursor: pointer;
+  opacity: 0;
+  animation: showB 0.5s ease-in-out;
+}
+
+@keyframes showB {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+button:hover {
+  background-color: #FFFFFF10;
+  transform: translateY(-3px) scale(1.02);
+  filter : brightness(1.5);
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+#name {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  font-weight: bold;
+  color: #ffffff60;
+}
+.highlight {
+  font-weight: bold;
+}
+
+.bomb {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #ffe8c9;
+  border-radius: 50%;
+  box-shadow: 4px 4px 4px #554698, inset -3px -3px 5px #da891f90;
+  z-index: 0;
+  animation: 폭탄생성 0.8s ease-out;
+}
+@keyframes 폭탄생성 {
+  0% {
+    transform: translate(0, 0) scale(1.1);
+  }
+  28% {
+    transform: translate(0, -15px) scale(1.1);
+  }
+  65% {
+    transform: translate(0, 0) scale(1);
+  }
+  85% {
+    filter:brightness(1.5)
+  }
+  100% {
+    filter:brightness(1)
+  }
+}
+
+@keyframes 폭발 {
+  0% {
+    background-color: #FF4141;
+    transform: scale(1);
+    opacity: 1;
+    box-shadow: 0 0 4px 2px rgba(255, 85, 85, 0.7),
+      0 0 6px 3px rgba(255, 140, 0, 0.5);
+  }
+  30% {
+    background-color: #FF4141;
+    transform: scale(2);
+    opacity: 0.8;
+    box-shadow: 0 0 4px 2px rgba(255, 85, 85, 0.8),
+      0 0 5px 3px rgba(255, 140, 0, 0.4); 
+  }
+  50% {
+    background-color: #FF6141;
+    transform: scale(4);
+    opacity: 0.6;
+    box-shadow: 0 0 6px 3px rgba(255, 120, 120, 0.8),
+      0 0 5px 4px rgba(255, 85, 85, 0.5); 
+  }
+  80% {
+    background-color:#FF6141;
+    transform: scale(6);
+    opacity: 0.4;
+    box-shadow: 0 0 8px 4px rgba(255, 85, 85, 0.8),
+      0 0 5px 4px rgba(255, 140, 0, 0.6);
+  }
+  100% {
+    background-color: #FF6141;
+    transform: scale(12);
+    opacity: 0;
+    box-shadow: 0 0 8px 4px rgba(255, 85, 85, 0.8); 
+  }
 }
 
 @keyframes 개쩖폭발 {
-    0% {
-      background-color: rgba(255, 85, 85, 1);
-      transform: scale(1);
-      opacity: 1;
-      box-shadow: 0 0 4px 2px rgba(255, 85, 85, 0.7),
-        0 0 6px 3px rgba(255, 140, 0, 0.5);
-    }
-    30% {
-      background-color: rgba(255, 105, 105, 1);
-      transform: scale(30);
-      border-radius:10px;
-      opacity: 0.8;
-      box-shadow: 0 0 4px 2px rgba(255, 85, 85, 0.8),
-        0 0 6px 3px rgba(255, 140, 0, 0.4); 
-    }
-    50% {
-      background-color: rgba(255, 120, 120, 1);
-      transform: scale(10);
-      opacity: 0.6;
-      box-shadow: 0 0 6px 3px rgba(255, 120, 120, 0.8),
-        0 0 8px 4px rgba(255, 85, 85, 0.5); 
-    }
-    80% {
-      background-color: rgba(255, 85, 85, 1);
-      transform: scale(50);
-      opacity: 0.4;
-      box-shadow: 0 0 8px 4px rgba(255, 85, 85, 0.8),
-        0 0 10px 5px rgba(255, 140, 0, 0.6);
-    }
-    100% {
-      background-color: rgba(255, 85, 85, 0);
-      transform: scale(100);
-      opacity: 0;
-      box-shadow: 0 0 10px 5px rgba(255, 85, 85, 0.8); 
-    }
+  0% {
+    background-color: rgba(255, 85, 85, 1);
+    transform: scale(1);
+    opacity: 1;
+    box-shadow: 0 0 4px 2px rgba(255, 85, 85, 0.7),
+      0 0 6px 3px rgba(255, 140, 0, 0.5);
+  }
+  30% {
+    background-color: rgba(255, 105, 105, 1);
+    transform: scale(30);
+    border-radius:10px;
+    opacity: 0.8;
+    box-shadow: 0 0 4px 2px rgba(255, 85, 85, 0.8),
+      0 0 6px 3px rgba(255, 140, 0, 0.4); 
+  }
+  50% {
+    background-color: rgba(255, 120, 120, 1);
+    transform: scale(10);
+    opacity: 0.6;
+    box-shadow: 0 0 6px 3px rgba(255, 120, 120, 0.8),
+      0 0 8px 4px rgba(255, 85, 85, 0.5); 
+  }
+  80% {
+    background-color: rgba(255, 85, 85, 1);
+    transform: scale(50);
+    opacity: 0.4;
+    box-shadow: 0 0 8px 4px rgba(255, 85, 85, 0.8),
+      0 0 10px 5px rgba(255, 140, 0, 0.6);
+  }
+  100% {
+    background-color: rgba(255, 85, 85, 0);
+    transform: scale(100);
+    opacity: 0;
+    box-shadow: 0 0 10px 5px rgba(255, 85, 85, 0.8); 
+  }
 }
 
 
-  .separator {
-    margin: 20px 0;
+.separator {
+  margin: 20px 0;
 }
 
 .separator hr {
-    width: 30%;
-    height: 2px;
-    background-color: #FFFFFF50;
-    border: none;
+  width: 30%;
+  height: 2px;
+  background-color: #FFFFFF50;
+  border: none;
 }
 
 .highlight {
-    color: #FFD793;
+  color: #FFCA85;
 }
 
 .abilities-section {
-    font-size: 17px;
-    font-weight: bold;
+  font-size: 17px;
+  font-weight: bold;
 }
 
 .skill-card {
-    margin: 5px;
-    padding: 5px;
-    background-color: #2F2B2A99;
-    color: white;
-    border-radius: 5px;
-    text-align: center;
-    transition:all 0.5s ease;
-    animation:show 0.5s ease;
-    font-size:15px;
-    border: 5px solid #FFFFFF00;
+  margin: 5px;
+  padding: 5px;
+  background-color: #3f3a3999;
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+  transition:all 0.5s ease;
+  animation:show 0.5s ease;
+  font-size:15px;
+  border: 5px solid #FFFFFF00;
+  box-shadow: 0px 0px 0px #00000000
 }
 
 .section-title {
-    font-size: 18px;
+  font-size: 18px;
 }
 
 .skill-card:hover{
-    transform : scale(1.04) translateY(-8px);
-    filter : brightness(1.5);
-    border: 5px solid #2F2B2A;
-    box-sizing: border-box;
-  }  
+  transform : scale(1.04) translateY(-8px);
+  filter : brightness(1.3);
+  border: 5px solid #635959;
+  box-sizing: border-box;
+  box-shadow: 0px 5px 1px #FFFFFF30
+}  
 
-  .skill-card:active{
-    transform : scale(0.9) translateY(5px);
-    filter : brightness(0.9);
-  }  
+.skill-card:active{
+  transform : scale(0.9) translateY(5px);
+  filter : brightness(0.9);
+}  
 </style>
 
 <div id="world">
-  <div id="name" onclick="window.location.href='park0sec.vercel.app'">
-    @샛별코딩동아리회장
+<div id="name" onclick="window.location.href='park0sec.vercel.app'">
+  @샛별코딩동아리회장
+</div>
+<div id="player_range">
+  <div id="player">
+    <div id="player-dis"></div>
   </div>
-  <div id="player_range">
-    <div id="player">
-      <div id="player-dis"></div>
-    </div>
-  </div>
-  <div id="stage" class="object" style="z-index: 1">#고라니는 귀엽습니다</div>
-  <progress
-    id="score"
-    class="object"
-    style="z-index: 1"
-    value="3"
-    max="3"
-  ></progress>
-  <div id="gameOver"></div>
+</div>
+<div id="stage" class="object" style="z-index: 1">#고라니는 귀엽습니다</div>
+<progress
+  id="score"
+  class="object"
+  style="z-index: 1"
+  value="3"
+  max="3"
+></progress>
+<div id="gameOver"></div>
 </div>
 
 <script>
-  // 시스템 함수 설정
-  function HTML(name) {
-    return document.querySelector(name);
-  }
+// 시스템 함수 설정
+function HTML(name) {
+  return document.querySelector(name);
+}
 
-  function 랜덤(min, max) {
-  let state = Date.now() + Math.random() * 1000000;//최대한 다르게
-  const random = () => {
-    state = (state * 16807) % 2147483647;
-    return state / 2147483647;
+function 랜덤(min, max) {
+let state = Date.now() + Math.random() * 1000000;//최대한 다르게
+const random = () => {
+  state = (state * 16807) % 2147483647;
+  return state / 2147483647;
+};
+return Math.floor(random() * (max - min + 1)) + min;
+}
+
+
+
+// 게임 함수 설정
+const 설정객체 = {
+  주인공크기: { x: 20, y: 20 },
+  월드크기: { x: 1300, y: 700 },
+};
+const keyIntervals = {};
+const 오브젝트 = {};
+let 충돌중복방지 = true;
+
+async function 기본설정() {
+  const 주인공 = HTML('#player');
+  const 월드 = HTML('#world');
+  월드크기 = { x: 월드.clientWidth, y: 월드.clientHeight };
+  //월드.style.minWidth = `${설정객체.월드크기.x}px`;
+  //월드.style.minHeight = `${설정객체.월드크기.y}px`;
+
+  주인공.style.width = `${설정객체.주인공크기.x}px`;
+  주인공.style.height = `${설정객체.주인공크기.y}px`;
+  주인공.style.top = `${
+    월드.getBoundingClientRect().height / 2 - 설정객체.주인공크기.y / 2
+  }px`;
+  주인공.style.left = `${
+    월드.getBoundingClientRect().width / 2 - 설정객체.주인공크기.x / 2
+  }px`;
+  오브젝트['#player'] = {
+    name: '#player',
+    x: parseInt(주인공.style.left),
+    y: parseInt(주인공.style.top),
+    deg: 0,
   };
-  return Math.floor(random() * (max - min + 1)) + min;
 }
-
-
-
-  // 게임 함수 설정
-  const 설정객체 = {
-    주인공크기: { x: 20, y: 20 },
-    월드크기: { x: 1300, y: 700 },
-  };
-  const keyIntervals = {};
-  const 오브젝트 = {};
-  let 충돌중복방지 = true;
-
-  async function 기본설정() {
-    const 주인공 = HTML('#player');
-    const 월드 = HTML('#world');
-    월드크기 = { x: 월드.clientWidth, y: 월드.clientHeight };
-    //월드.style.minWidth = `${설정객체.월드크기.x}px`;
-    //월드.style.minHeight = `${설정객체.월드크기.y}px`;
-
-    주인공.style.width = `${설정객체.주인공크기.x}px`;
-    주인공.style.height = `${설정객체.주인공크기.y}px`;
-    주인공.style.top = `${
-      월드.getBoundingClientRect().height / 2 - 설정객체.주인공크기.y / 2
-    }px`;
-    주인공.style.left = `${
-      월드.getBoundingClientRect().width / 2 - 설정객체.주인공크기.x / 2
-    }px`;
-    오브젝트['#player'] = {
-      name: '#player',
-      x: parseInt(주인공.style.left),
-      y: parseInt(주인공.style.top),
-      deg: 0,
-    };
-  }
-  function 적군생성(num) {
-    const player = HTML('#player');
-    const playerRect = player.getBoundingClientRect();
-    const playerX = playerRect.left + playerRect.width / 2;
-    const playerY = playerRect.top + playerRect.height / 2;
-    const minDistance = 200;
-
-    for (let i = 0; i < num; i++) {
-      let randomX, randomY, distance;
-
-      do {
-        randomX = Math.floor(Math.random() * 설정객체.월드크기.x);
-        randomY = Math.floor(Math.random() * 설정객체.월드크기.y);
-
-        distance = Math.sqrt(
-          Math.pow(randomX - playerX, 2) + Math.pow(randomY - playerY, 2)
-        );
-      } while (distance < minDistance);
-      적카운터++;
-      const 적군 = document.createElement('div');
-      적군.classList.add('enemy');
-      적군.id = `enemy${적카운터}`;
-      적군.innerHTML = `<div class="shadow"></div>`;
-      HTML('#world').appendChild(적군);
-
-      적군.style.top = `${randomY}px`;
-      적군.style.left = `${randomX}px`;
-      오브젝트[`#enemy${적카운터}`] = {
-        name: `#enemy${적카운터}`,
-        x: randomX,
-        y: randomY,
-        alive: true,
-        type:'norm',
-        deg: Math.floor(Math.random() * 180) + 1,
-      };
-      if(랜덤(1,40)>(40-레벨*1)){
-        HTML(`#enemy${적카운터}`).style.borderColor = 'transparent transparent black transparent';
-        오브젝트[`#enemy${적카운터}`].type = 'spec'
-      }
-    }
-  }
-  let 최종점수 = 0
-  function 게임오버() {
-    HTML('#world').style.filter = ``;
-    let count=0;
-    for (let char of skillType) {
-      if (char === ',') {
-      count++;
-  }
-  }
-  최종점수 = 레벨-1
-  최종점수-=count;
-  if(최종점수<0){최종점수 = 0};
-    windowAlert(
-      '게임오버',
-      `
-    사망하였습니다 😓
-    <div style = "margin:20px;"><hr style="width: 30%; height: 2px; background-color: #FFFFFF50; border: none;">
-  </div>
-    🏆점수 • <span class = "highlight">${최종점수}</span>${(admin)?' (관리자모드)':''}
-    <div></div>
-    📜결과코드 • <span class = "highlight">${코드()}</span>
-    <div></div><div style = "font-size:12px">(옆에 배치된 포스트잇에 이 코드를 적고 보상을 받으러 가보세요!)</div>
-    `,
-      '다시플레이',
-      '/*location.reload()*/window.alert(`동아리 부원에게 요청해주세요! 플레이 횟수를 맞추기 위함입니다!`);'
-    );
-    HTML('#world').style.filter = ``;
-  }
-
-  function 시간포멧() {
-    const now = new Date();
-    const day = String(now.getDate()).padStart(2, '0');
-    const hours = String(now.getHours()).padStart(2, '0');
-    const minutes = String(now.getMinutes()).padStart(2, '0');
-
-    return `${day}${hours}${minutes}`;
-  }
-
-  function 숫자암호화(input) {
-    const map = {
-      1: 'A',
-      2: 'B',
-      3: 'C',
-      4: 'D',
-      5: 'E',
-      6: 'F',
-      7: 'G',
-      8: 'H',
-      9: 'I',
-      0: 'J',
-    };
-
-    return input.replace(/[0-9]/g, (match) => map[match]);
-  }
-
-  function 코드() {
-    let result = 'Z1' + 숫자암호화(String(최종점수));
-    result += '2';
-    result += 숫자암호화(시간포멧());
-    result += (admin)?'RRM':''
-    return result;
-  }
-
-  function 이동(name, dx, dy) {
-    const 요소 = document.querySelector(name);
-    const world = HTML('#world');
-    const padding = 18;
-
-    if (!요소) return;
-
-    const currentX = parseFloat(요소.style.left || 0);
-    const currentY = parseFloat(요소.style.top || 0);
-    const newX = Math.max(
-      padding,
-      Math.min(world.offsetWidth - 요소.offsetWidth - padding, currentX + dx)
-    );
-    const newY = Math.max(
-      padding,
-      Math.min(world.offsetHeight - 요소.offsetHeight - padding, currentY + dy)
-    );
-
-    요소.style.left = `${newX}px`;
-    요소.style.top = `${newY}px`;
-    if (오브젝트[name]) {
-      오브젝트[name].x = newX;
-      오브젝트[name].y = newY;
-    }
-  }
-
-  let skillType = "";
-  let playerSpeed = 35;
-  async function 적군거리계산() {
-    if (충돌중복방지) {
-      const player = HTML('#player');
-      const playerRect = player.getBoundingClientRect();
-      //솔까 회전한 삼각형 꼭짓점 가지고 넓이 범위 구하는짓은 못하겠음 ㅅㄱ
-      const 적군들 = document.querySelectorAll('.enemy');
-      for (let 적군 of 적군들) {
-        const enemyRect = 적군.getBoundingClientRect();
-        const overlap = !(
-          playerRect.right < enemyRect.left ||
-          playerRect.left > enemyRect.right ||
-          playerRect.bottom < enemyRect.top ||
-          playerRect.top > enemyRect.bottom
-        );
-
-        if (overlap) {
-          충돌중복방지 = false;
-          const 적군Id = 적군.id;
-          const 적군오브젝트 = 오브젝트[`#${적군Id}`];
-          console.log(적군오브젝트.alive);
-          if (적군오브젝트.alive) {
-            적군오브젝트.deg = (적군오브젝트.deg + 180) % 360;
-            const 이동거리 = Math.random() * 20 + 50;
-            await 방향이동(적군Id, 적군오브젝트.deg, 이동거리);
-
-            HTML('#player').style.filter = 'brightness(1.1) contrast(1.5)';
-            HTML('#world').style.filter = `contrast(${1.1 + (레벨 - 1) * 0.1})`;
-            HTML('#score').value -= 1;
-            setTimeout(() => {
-              충돌중복방지 = true;
-              HTML('#player').style.filter = '';
-              HTML('#world').style.filter = `contrast(${1 + (레벨 - 1) * 0.1})`;
-            }, 100);
-            if (HTML('#score').value == 0) {
-              게임오버();
-            }
-            break;
-          }
-        }
-      }
-    }
-  }
-let admin = false;
-let 스킬쿨타임 = false;
-  function 토글(str, word) { //귀차니즘
-  if (str.includes(word)) {
-    return str.replace(word, '');
-  } else {
-    return str + word;
-  }
-}
-  document.addEventListener('keydown', (e) => {
-    if (!keyIntervals[e.key]) {
-      if (e.key === 'a') {
-        keyIntervals[e.key] = setInterval(() => {
-          이동('#player', -playerSpeed, 0);
-        }, 150);
-      } else if (e.key === 'd') {
-        keyIntervals[e.key] = setInterval(() => {
-          이동('#player', playerSpeed, 0);
-        }, 150);
-      } else if (e.key === 'w') {
-        keyIntervals[e.key] = setInterval(() => {
-          이동('#player', 0, -playerSpeed);
-        }, 150);
-      } else if (e.key === 's') {
-        keyIntervals[e.key] = setInterval(() => {
-          이동('#player', 0, playerSpeed);
-        }, 150);
-      } else if (e.key === ' ' && skillType.includes('bomb')) {
-    if (!스킬쿨타임) {
-        폭탄배치(오브젝트['#player'].x, 오브젝트['#player'].y); 
-        스킬쿨타임 = true;
-        setTimeout(() => {
-            스킬쿨타임 = false;
-        }, 1500); 
-        keyIntervals[e.key] = setInterval(() => {
-          if (!스킬쿨타임) {
-              폭탄배치(오브젝트['#player'].x, 오브젝트['#player'].y);
-              스킬쿨타임 = true;
-              setTimeout(() => {
-                  스킬쿨타임 = false; 
-              }, 1000);
-          }
-        }, 1000);
-    }
-}
-    }
-  });
-
-  document.addEventListener('keyup', (e) => {
-    if (keyIntervals[e.key]) {
-      setTimeout(() => {
-        clearInterval(keyIntervals[e.key]);
-        delete keyIntervals[e.key];
-      }, 100);
-    }
-  });
-  function 적군이동() {
+function 적군생성(num) {
   const player = HTML('#player');
   const playerRect = player.getBoundingClientRect();
   const playerX = playerRect.left + playerRect.width / 2;
   const playerY = playerRect.top + playerRect.height / 2;
+  const minDistance = 200;
 
-  for (const key in 오브젝트) {
-    const 대상오브젝트 = 오브젝트[key];
-    if (!대상오브젝트.name.includes('player')) {
-      if (!대상오브젝트.alive) {
-        continue;
-      }
-      const 적군 = HTML(대상오브젝트.name);
-      const 적군Rect = 적군.getBoundingClientRect();
-      const 적군X = 적군Rect.left + 적군Rect.width / 2;
-      const 적군Y = 적군Rect.top + 적군Rect.height / 2;
+  for (let i = 0; i < num; i++) {
+    let randomX, randomY, distance;
 
-      if (Math.floor(Math.random() * 100) > 96 - 레벨 * 2) {
-        const 플레이어방향 =
-          Math.atan2(playerY - 적군Y, playerX - 적군X) * (180 / Math.PI);
-        대상오브젝트.deg = 플레이어방향;
-      } else {
-        대상오브젝트.deg += Math.random() * 4.5;
-      }
-      //대상오브젝트.deg*=(랜덤(0.95,1.05)/**(레벨*0.1)*/)
+    do {
+      randomX = Math.floor(Math.random() * 설정객체.월드크기.x);
+      randomY = Math.floor(Math.random() * 설정객체.월드크기.y);
 
-      let 이동거리 = Math.random() * 20 + 15 + 레벨 * 12;
-      if (skillType.includes('lower')) {
-        이동거리 *= 1.5;
-      }
-      if(대상오브젝트.type == 'spec'){
-        이동거리 *= 2;
-      }
-      let 이동X = 이동거리 * Math.cos(대상오브젝트.deg * (Math.PI / 180));
-      let 이동Y = 이동거리 * Math.sin(대상오브젝트.deg * (Math.PI / 180));
+      distance = Math.sqrt(
+        Math.pow(randomX - playerX, 2) + Math.pow(randomY - playerY, 2)
+      );
+    } while (distance < minDistance);
+    적카운터++;
+    const 적군 = document.createElement('div');
+    적군.classList.add('enemy');
+    적군.id = `enemy${적카운터}`;
+    적군.innerHTML = `<div class="shadow"></div>`;
+    HTML('#world').appendChild(적군);
 
-      const 월드 = HTML('#world');
-      const 월드Rect = 월드.getBoundingClientRect();
-
-      const 예상X = 적군Rect.left + 이동X;
-      const 예상Y = 적군Rect.top + 이동Y;
-
-      // 벽까지 남은 거리 계산
-      const 남은거리X = 예상X < 월드Rect.left
-        ? 월드Rect.left - 적군Rect.left
-        : 예상X + 적군Rect.width > 월드Rect.right
-        ? 월드Rect.right - (적군Rect.left + 적군Rect.width)
-        : 이동X;
-
-      const 남은거리Y = 예상Y < 월드Rect.top
-        ? 월드Rect.top - 적군Rect.top
-        : 예상Y + 적군Rect.height > 월드Rect.bottom
-        ? 월드Rect.bottom - (적군Rect.top + 적군Rect.height)
-        : 이동Y;
-
-      if (Math.abs(남은거리X) < Math.abs(이동X)) {
-        이동X = 남은거리X;
-        대상오브젝트.deg = 180 - 대상오브젝트.deg;
-      }
-
-      if (Math.abs(남은거리Y) < Math.abs(이동Y)) {
-        이동Y = 남은거리Y;
-        대상오브젝트.deg = 360 - 대상오브젝트.deg;
-      }
-
-      이동(대상오브젝트.name, 이동X, 이동Y);
-
-      HTML(대상오브젝트.name).style.transition =
-        'all 2s linear, transform 1s ease';
-      HTML(대상오브젝트.name).style.transform = `rotate(${
-        대상오브젝트.deg + 90
-      }deg)`;
+    적군.style.top = `${randomY}px`;
+    적군.style.left = `${randomX}px`;
+    오브젝트[`#enemy${적카운터}`] = {
+      name: `#enemy${적카운터}`,
+      x: randomX,
+      y: randomY,
+      alive: true,
+      type:'norm',
+      deg: Math.floor(Math.random() * 180) + 1,
+    };
+    if(랜덤(1,40)>(40-레벨*1)){
+      HTML(`#enemy${적카운터}`).style.borderColor = 'transparent transparent black transparent';
+      오브젝트[`#enemy${적카운터}`].type = 'spec'
     }
   }
 }
-  let 적카운터 = 0;
-  function 방향이동(name, deg, px) {
-    const radian = deg * (Math.PI / 180);
-    const 이동X = px * Math.cos(radian);
-    const 이동Y = px * Math.sin(radian);
+let 최종점수 = 0
+function 게임오버() {
+  HTML('#world').style.filter = ``;
+  let count=0;
+  for (let char of skillType) {
+    if (char === ',') {
+    count++;
+}
+}
+최종점수 = 레벨-1
+최종점수-=count;
+if(최종점수<0){최종점수 = 0};
+  windowAlert(
+    '게임오버',
+    `
+  사망하였습니다 😓
+  <div style = "margin:20px;"><hr style="width: 30%; height: 2px; background-color: #FFFFFF50; border: none;">
+</div>
+  🏆점수 • <span class = "highlight">${최종점수}</span>${(admin)?' (관리자모드)':''}
+  <div></div>
+  📜결과코드 • <span class = "highlight">${코드()}</span>
+  <div></div><div style = "font-size:12px">(옆에 배치된 포스트잇에 이 코드를 적고 보상을 받으러 가보세요!)</div>
+  `,
+    '다시플레이',
+    '/*location.reload()*/window.alert(`동아리 부원에게 요청해주세요! 플레이 횟수를 맞추기 위함입니다!`);'
+  );
+  HTML('#world').style.filter = ``;
+}
 
-    if (오브젝트[name]) {
-      이동(name, 이동X, 이동Y);
+function 시간포멧() {
+  const now = new Date();
+  const day = String(now.getDate()).padStart(2, '0');
+  const hours = String(now.getHours()).padStart(2, '0');
+  const minutes = String(now.getMinutes()).padStart(2, '0');
+
+  return `${day}${hours}${minutes}`;
+}
+
+function 숫자암호화(input) {
+  const map = {
+    1: 'A',
+    2: 'B',
+    3: 'C',
+    4: 'D',
+    5: 'E',
+    6: 'F',
+    7: 'G',
+    8: 'H',
+    9: 'I',
+    0: 'J',
+  };
+
+  return input.replace(/[0-9]/g, (match) => map[match]);
+}
+
+function 코드() {
+  let result = 'Z1' + 숫자암호화(String(최종점수));
+  result += '2';
+  result += 숫자암호화(시간포멧());
+  result += (admin)?'RRM':''
+  return result;
+}
+
+function 이동(name, dx, dy) {
+  const 요소 = document.querySelector(name);
+  const world = HTML('#world');
+  const padding = 18;
+
+  if (!요소) return;
+
+  const currentX = parseFloat(요소.style.left || 0);
+  const currentY = parseFloat(요소.style.top || 0);
+  const newX = Math.max(
+    padding,
+    Math.min(world.offsetWidth - 요소.offsetWidth - padding, currentX + dx)
+  );
+  const newY = Math.max(
+    padding,
+    Math.min(world.offsetHeight - 요소.offsetHeight - padding, currentY + dy)
+  );
+
+  요소.style.left = `${newX}px`;
+  요소.style.top = `${newY}px`;
+  if (오브젝트[name]) {
+    오브젝트[name].x = newX;
+    오브젝트[name].y = newY;
+  }
+}
+
+let skillType = "";
+let playerSpeed = 35;
+async function 적군거리계산() {
+  if (충돌중복방지) {
+    const player = HTML('#player');
+    const playerRect = player.getBoundingClientRect();
+    //솔까 회전한 삼각형 꼭짓점 가지고 넓이 범위 구하는짓은 못하겠음 ㅅㄱ
+    const 적군들 = document.querySelectorAll('.enemy');
+    for (let 적군 of 적군들) {
+      const enemyRect = 적군.getBoundingClientRect();
+      const overlap = !(
+        playerRect.right < enemyRect.left ||
+        playerRect.left > enemyRect.right ||
+        playerRect.bottom < enemyRect.top ||
+        playerRect.top > enemyRect.bottom
+      );
+
+      if (overlap) {
+        충돌중복방지 = false;
+        const 적군Id = 적군.id;
+        const 적군오브젝트 = 오브젝트[`#${적군Id}`];
+        console.log(적군오브젝트.alive);
+        if (적군오브젝트.alive) {
+          적군오브젝트.deg = (적군오브젝트.deg + 180) % 360;
+          const 이동거리 = Math.random() * 20 + 50;
+          await 방향이동(적군Id, 적군오브젝트.deg, 이동거리);
+
+          HTML('#player').style.filter = 'brightness(1.1) contrast(1.5)';
+          HTML('#world').style.filter = `contrast(${1.1 + (레벨 - 1) * 0.1})`;
+          HTML('#score').value -= 1;
+          setTimeout(() => {
+            충돌중복방지 = true;
+            HTML('#player').style.filter = '';
+            HTML('#world').style.filter = `contrast(${1 + (레벨 - 1) * 0.1})`;
+          }, 100);
+          if (HTML('#score').value == 0) {
+            게임오버();
+          }
+          break;
+        }
+      }
     }
   }
+}
+let admin = false;
+let 스킬쿨타임 = false;
+function 토글(str, word) { //귀차니즘
+if (str.includes(word)) {
+  return str.replace(word, '');
+} else {
+  return str + word;
+}
+}
+document.addEventListener('keydown', (e) => {
+  if (!keyIntervals[e.key]) {
+    if (e.key === 'a') {
+      keyIntervals[e.key] = setInterval(() => {
+        이동('#player', -playerSpeed, 0);
+      }, 150);
+    } else if (e.key === 'd') {
+      keyIntervals[e.key] = setInterval(() => {
+        이동('#player', playerSpeed, 0);
+      }, 150);
+    } else if (e.key === 'w') {
+      keyIntervals[e.key] = setInterval(() => {
+        이동('#player', 0, -playerSpeed);
+      }, 150);
+    } else if (e.key === 's') {
+      keyIntervals[e.key] = setInterval(() => {
+        이동('#player', 0, playerSpeed);
+      }, 150);
+    } else if ((e.key === ' ' || e.key === 'q') && skillType.includes('bomb')) {
+  if (!스킬쿨타임) {
+      폭탄배치(오브젝트['#player'].x, 오브젝트['#player'].y); 
+      스킬쿨타임 = true;
+      setTimeout(() => {
+          스킬쿨타임 = false;
+      }, 1500); 
+      keyIntervals[e.key] = setInterval(() => {
+        if (!스킬쿨타임) {
+            폭탄배치(오브젝트['#player'].x, 오브젝트['#player'].y);
+            스킬쿨타임 = true;
+            setTimeout(() => {
+                스킬쿨타임 = false; 
+            }, 1000);
+        }
+      }, 1000);
+  }
+}
+  }
+});
 
-  windowAlert(
-    '종이비행기 피하기 게임',
-    `<div>
-    당신이 한강빙판에서 <span class="highlight">스케이트</span>를 타고 있는데,
+document.addEventListener('keyup', (e) => {
+  if (keyIntervals[e.key]) {
+    setTimeout(() => {
+      clearInterval(keyIntervals[e.key]);
+      delete keyIntervals[e.key];
+    }, 100);
+  }
+});
+function 적군이동() {
+const player = HTML('#player');
+const playerRect = player.getBoundingClientRect();
+const playerX = playerRect.left + playerRect.width / 2;
+const playerY = playerRect.top + playerRect.height / 2;
+
+for (const key in 오브젝트) {
+  const 대상오브젝트 = 오브젝트[key];
+  if (!대상오브젝트.name.includes('player')) {
+    if (!대상오브젝트.alive) {
+      continue;
+    }
+    const 적군 = HTML(대상오브젝트.name);
+    const 적군Rect = 적군.getBoundingClientRect();
+    const 적군X = 적군Rect.left + 적군Rect.width / 2;
+    const 적군Y = 적군Rect.top + 적군Rect.height / 2;
+
+    if (Math.floor(Math.random() * 100) > 96 - 레벨 * 2) {
+      const 플레이어방향 =
+        Math.atan2(playerY - 적군Y, playerX - 적군X) * (180 / Math.PI);
+      대상오브젝트.deg = 플레이어방향;
+    } else {
+      대상오브젝트.deg += Math.random() * 4.5;
+    }
+    //대상오브젝트.deg*=(랜덤(0.95,1.05)/**(레벨*0.1)*/)
+
+    let 이동거리 = Math.random() * 20 + 15 + 레벨 * 12;
+    if (skillType.includes('lower')) {
+      이동거리 *= 1.5;
+    }
+    if(대상오브젝트.type == 'spec'){
+      이동거리 *= 2;
+    }
+    let 이동X = 이동거리 * Math.cos(대상오브젝트.deg * (Math.PI / 180));
+    let 이동Y = 이동거리 * Math.sin(대상오브젝트.deg * (Math.PI / 180));
+
+    const 월드 = HTML('#world');
+    const 월드Rect = 월드.getBoundingClientRect();
+
+    const 예상X = 적군Rect.left + 이동X;
+    const 예상Y = 적군Rect.top + 이동Y;
+
+    // 벽까지 남은 거리 계산
+    const 남은거리X = 예상X < 월드Rect.left
+      ? 월드Rect.left - 적군Rect.left
+      : 예상X + 적군Rect.width > 월드Rect.right
+      ? 월드Rect.right - (적군Rect.left + 적군Rect.width)
+      : 이동X;
+
+    const 남은거리Y = 예상Y < 월드Rect.top
+      ? 월드Rect.top - 적군Rect.top
+      : 예상Y + 적군Rect.height > 월드Rect.bottom
+      ? 월드Rect.bottom - (적군Rect.top + 적군Rect.height)
+      : 이동Y;
+
+    이동(대상오브젝트.name, 이동X, 이동Y);
+    if (Math.abs(남은거리X) < Math.abs(이동X)) {
+      이동X = 남은거리X;
+      대상오브젝트.deg = 180 - 대상오브젝트.deg;
+    }
+
+    if (Math.abs(남은거리Y) < Math.abs(이동Y)) {
+      이동Y = 남은거리Y;
+      대상오브젝트.deg = 360 - 대상오브젝트.deg;
+    }
+
+
+    HTML(대상오브젝트.name).style.transition =
+      'all 2s linear, transform 1s ease';
+    HTML(대상오브젝트.name).style.transform = `rotate(${
+      대상오브젝트.deg + 90
+    }deg)`;
+  }
+}
+}
+let 적카운터 = 0;
+function 방향이동(name, deg, px) {
+  const radian = deg * (Math.PI / 180);
+  const 이동X = px * Math.cos(radian);
+  const 이동Y = px * Math.sin(radian);
+
+  if (오브젝트[name]) {
+    이동(name, 이동X, 이동Y);
+  }
+}
+
+windowAlert(
+  '종이비행기 피하기 게임',
+  `<div>
+  당신이 한강빙판에서 <span class="highlight">스케이트</span>를 타고 있는데,
 </div>
 <div>
-    갑자기 <span class="highlight">종이비행기</span>들이 날아와 당신을 괴롭힙니다!
+  갑자기 <span class="highlight">종이비행기</span>들이 날아와 당신을 괴롭힙니다!
 </div>
 
 <div class="separator">
-    <hr>
+  <hr>
 </div>
 
 <div>
-    <span class="highlight">A, S, D, W</span> 키로 <span style = "width:15px;height:15px; display:inline-block;"id = "fakePlayer"></span> 를 이동하며
-    <span class = "enemy" style = "margin-top:5px; "></span>⠀⠀들을 피해보세요!
+  <span class="highlight">A, S, D, W</span> 키로 <span style = "width:15px;height:15px; display:inline-block;"id = "fakePlayer"></span> 를 이동하며
+  <span class = "enemy" style = "margin-top:5px; "></span>⠀⠀들을 피해보세요!
 </div>
 
 <div>
-    체력은 <span class="highlight">3점</span>에서 <span class = "enemy" style = "margin-top:5px; "></span>⠀⠀에 닿을 때마다 1점씩 내려갑니다.
+  체력은 <span class="highlight">3점</span>에서 <span class = "enemy" style = "margin-top:5px; "></span>⠀⠀에 닿을 때마다 1점씩 내려갑니다.
 </div>
 
 <div>
-    체력이 <span class = "highlight">0점</span>이 되면 사망합니다.
+  체력이 <span class = "highlight">0점</span>이 되면 사망합니다.
 </div>
 
 <div>
-    <span class = "highlight">종이비행기</span>들로부터 최대한 오래 살아남아보세요!
+  <span class = "highlight">종이비행기</span>들로부터 최대한 오래 살아남아보세요!
 </div>
 
 <div class="separator">
-    <hr>
+  <hr>
 </div>
 
 <div class="abilities-section">
-    <span class="section-title">▶능력선택◀</span>
-    <div style = "font-size:13px;margin-bottom:10px;">
-        (<span class="highlight">여러개</span>도 선택 가능해요! 스킬개수 만큼의 <span class = "highlight">점수감점</span> 조심하세요!)
-    </div>
+  <span class="section-title">▶능력선택◀</span>
+  <div style = "font-size:11px;margin-bottom:10px; margin-top : 2px;">
+      (<span class="highlight">여러개</span>도 선택 가능해요! 스킬개수 만큼의 <span class = "highlight">점수감점</span> 조심하세요!)
+  </div>
 
-    <div class="skill-cards">
-      <div class="skill-card" id="skill-card1" onclick='skillType = 토글(skillType,"bomb,"); HTML("#skill-card1").innerHTML = 토글(HTML("#skill-card1").innerHTML, "←선택됨")'><span class="highlight">스페이스키</span>를 눌러 1초 <span class="highlight">미니시한폭탄</span>을 설치</div>
+  <div class="skill-cards">
+    <div class="skill-card" id="skill-card1" onclick='skillType = 토글(skillType,"bomb,"); HTML("#skill-card1").innerHTML = 토글(HTML("#skill-card1").innerHTML, "←선택됨")'><span class="highlight">스페이스키</span>를 눌러 1초 <span class="highlight">미니시한폭탄</span>을 설치</div>
 <div class="skill-card" id="skill-card2" onclick='skillType = 토글(skillType,"stren,"); HTML("#skill-card2").innerHTML = 토글(HTML("#skill-card2").innerHTML, "←선택됨")'>체력이 <span class="highlight">2</span>증가, 속도가 <span class="highlight">50%</span>증가</div>
 <div class="skill-card" id="skill-card3" onclick='skillType = 토글(skillType,"lower,"); HTML("#skill-card3").innerHTML = 토글(HTML("#skill-card3").innerHTML, "←선택됨")'>종이비행기의 속도 <span class="highlight">15%</span>증가, 개수 <span class="highlight">20%</span>감소</div>
 
-    </div>
+  </div>
 </div>
 
-              `,
-    '시작하기',
-    '시작();'
-  );
-  let 레벨 = 1;
-  기본설정();
-  async function 시작() {
-    if(skillType.includes('stren')){playerSpeed *= (15/10);HTML('#score').max=5;HTML('#score').value=5;}
-    HTML('#score').style.margin = '70px 12px';
-    await new Promise((resolve) => setTimeout(resolve, 100));
+            `,
+  '시작하기',
+  '시작();'
+);
+let 레벨 = 1;
+기본설정();
+async function 시작() {
+  if(skillType.includes('stren')){playerSpeed *= (15/10);HTML('#score').max=5;HTML('#score').value=5;}
+  HTML('#score').style.margin = '70px 12px';
+  await new Promise((resolve) => setTimeout(resolve, 100));
 
-    for (let i = 0; i < 30; i++) {
-      if (HTML('#score').value == 0) break;
+  for (let i = 0; i < 30; i++) {
+    if (HTML('#score').value == 0) break;
 
-      //alert(HTML('#score').value);
+    //alert(HTML('#score').value);
 
-      const waver = setTimeout(() => {
-        // for (const key in 오브젝트) {
-        //   HTML(오브젝트[key].이름).remove();
-        //   delete 오브젝트[key];
-        // }
+    const waver = setTimeout(() => {
+      // for (const key in 오브젝트) {
+      //   HTML(오브젝트[key].이름).remove();
+      //   delete 오브젝트[key];
+      // }
 
-        // 'Stage' 업데이트
-        if (!(HTML('#score').value == 0)) {
-          HTML('#stage').innerHTML = 'Stage ' + 레벨;
-          HTML('#stage').style.animation = 'stageSet 0.8s ease';
-          HTML('#world').style.filter = `contrast(${1 + (레벨 - 1) * 0.1})`;
-          setTimeout(() => {
-            HTML('#stage').style.animation = '';
-          }, 800);
-          let 적군생성량 = 10+Math.round(레벨*1.5);
-          if(skillType.includes('lower')){적군생성량 = Math.round(적군생성량*=(8/10))}
-          적군생성(적군생성량);
-          레벨++;
-        }
-        // 웨이브 시작
-        const 웨이브 = setInterval(() => {
-          if (HTML('#score').value == 0) {
-            clearInterval(웨이브);
-          } else {
-            적군이동();
-            적군거리계산();
-          }
-        }, 150);
-
+      // 'Stage' 업데이트
+      if (!(HTML('#score').value == 0)) {
+        HTML('#stage').innerHTML = 'Stage ' + 레벨;
+        HTML('#stage').style.animation = 'stageSet 0.8s ease';
+        HTML('#world').style.filter = `contrast(${1 + (레벨 - 1) * 0.1})`;
         setTimeout(() => {
+          HTML('#stage').style.animation = '';
+        }, 800);
+        let 적군생성량 = 10+Math.round(레벨*1.5);
+        if(skillType.includes('lower')){적군생성량 = Math.round(적군생성량*=(8/10))}
+        적군생성(적군생성량);
+        레벨++;
+      }
+      // 웨이브 시작
+      const 웨이브 = setInterval(() => {
+        if (HTML('#score').value == 0) {
           clearInterval(웨이브);
-        }, 10000);
-      }, i * 10000);
-    }
+        } else {
+          적군이동();
+          적군거리계산();
+        }
+      }, 150);
+
+      setTimeout(() => {
+        clearInterval(웨이브);
+      }, 10000);
+    }, i * 10000);
+  }
+}
+
+async function textEffect(name, content, speed) {
+  const element = HTML(name);
+  if (!element) {
+    console.error(`요소 ${name}을 찾을 수 없습니다.`);
+    return;
   }
 
-  async function textEffect(name, content, speed) {
-    const element = HTML(name);
-    if (!element) {
-      console.error(`요소 ${name}을 찾을 수 없습니다.`);
-      return;
-    }
+  let processedContent = '';
+  let index = 0;
 
-    let processedContent = '';
-    let index = 0;
+  while (index < content.length) {
+    const char = content[index];
 
-    while (index < content.length) {
-      const char = content[index];
-
-      if (char === '<') {
-        processedContent += char;
-        index++;
-        while (content[index] !== '>' && index < content.length) {
-          processedContent += content[index];
-          index++;
-        }
-        processedContent += '>';
-      } else {
-        processedContent += char;
-      }
-
-      element.innerHTML = processedContent + '●'; //겁나 열심히 만든 GPT 느낌 텍스트
-      if (content[index] !== ' ') {
-        await new Promise((resolve) => setTimeout(resolve, speed));
-      }
-
+    if (char === '<') {
+      processedContent += char;
       index++;
+      while (content[index] !== '>' && index < content.length) {
+        processedContent += content[index];
+        index++;
+      }
+      processedContent += '>';
+    } else {
+      processedContent += char;
     }
-    element.innerHTML = processedContent;
-  }
 
-  async function windowAlert(title, content, act, work) {
-    const windowHolder = document.createElement('div');
-    windowHolder.classList.add('window-holder');
-
-    const windowContent = document.createElement('div');
-    windowContent.id = 'window';
-
-    const centerContent = `
-          <center>
-          <div style="font-size:20px;font-weight:bold">${title}</div>
-          <div style="margin:20px;"><hr style="width: 60%; height: 2px; background-color: #FFFFFF50; border: none;"></div>
-          <p id="window-cont"></p>
-          <div style="height:20px;"></div>
-          <button id="close" onclick="${work} setTimeout(()=>{HTML('.window-holder').remove();},100)">${act}</button>
-          </center>
-      `;
-
-    windowContent.innerHTML = centerContent;
-    windowHolder.appendChild(windowContent);
-    document.body.appendChild(windowHolder);
-    await textEffect('#window-cont', content, 18);
-
-    const closeButton = document.querySelector('#close');
-    closeButton.style.opacity = 0;
-    closeButton.style.display = 'block';
-    await new Promise((resolve) => setTimeout(resolve, 10));
-    closeButton.style.opacity = 1;
-  }
-  //이 코드는 한번 만들고 얼마나 굴려먹고 있는거야 ㅋㅋㅋㅋ
-
-  let 폭탄개수 = 0;
-  function 폭탄배치(x, y) {
-    폭탄개수++;
-    const bomb = document.createElement('div');
-    bomb.classList.add('bomb');
-    bomb.id = `b${폭탄개수}`;
-    bomb.style.left = `${오브젝트['#player'].x + 5}px`;
-    bomb.style.top = `${오브젝트['#player'].y + 5}px`;
-    HTML('#world').appendChild(bomb);
-
-    setTimeout(() => {
-      폭발(x + 25, y + 25, bomb.id);
-    }, 1000);
-  }
-  function 폭발(x, y, 대상이름) {
-    const 대상 = HTML(`#${대상이름}`);
-    if (!대상) {
-      console.error(`대상 ${대상이름}을(를) 찾을 수 없습니다.`);
-      return; //이유는 모르겠는데 자꾸 null 됨
+    element.innerHTML = processedContent + '●'; //겁나 열심히 만든 GPT 느낌 텍스트
+    if (content[index] !== ' ') {
+      await new Promise((resolve) => setTimeout(resolve, speed));
     }
-    대상.style.animation = `${(admin)?'개쩖폭발':'폭발'} 0.8s ease-out forwards`;
-    const 폭발확인 = setInterval(() => {
-      const 폭발범위 = 대상.getBoundingClientRect();
-      for (const key in 오브젝트) {
-        const 적군오브젝트 = 오브젝트[key];
-        if (!적군오브젝트.name.includes('player')) {
-          const 적군 = HTML(적군오브젝트.name);
-          if (!적군) continue;
 
-          const 적군Rect = 적군.getBoundingClientRect();
-          const 충돌 =
-            폭발범위.left < 적군Rect.right &&
-            폭발범위.right > 적군Rect.left &&
-            폭발범위.top < 적군Rect.bottom &&
-            폭발범위.bottom > 적군Rect.top;
+    index++;
+  }
+  element.innerHTML = processedContent;
+}
 
-          if (충돌) {
-            //console.log(`적군 ${적군오브젝트.name}이(가) 폭발로 제거됨.`);
-            오브젝트[key].alive = false; // html 은 효과 적용해야해서 조금 있다가 지워야함 ㅇㅇ
-            적군.style.animation = '적죽음 0.5s ease';
-            setTimeout(() => {
-              적군.remove();
-              delete 오브젝트[key];
-              충돌중복방지 = true;
-            }, 495);
-          }
+async function windowAlert(title, content, act, work) {
+  const windowHolder = document.createElement('div');
+  windowHolder.classList.add('window-holder');
+
+  const windowContent = document.createElement('div');
+  windowContent.id = 'window';
+
+  const centerContent = `
+        <center>
+        <div style="font-size:20px;font-weight:bold">${title}</div>
+        <div style="margin:20px;"><hr style="width: 60%; height: 2px; background-color: #FFFFFF50; border: none;"></div>
+        <p id="window-cont"></p>
+        <div style="height:10px;"></div>
+        <button id="close" onclick="${work} setTimeout(()=>{HTML('.window-holder').remove();},100)">${act}</button>
+        </center>
+    `;
+
+  windowContent.innerHTML = centerContent;
+  windowHolder.appendChild(windowContent);
+  document.body.appendChild(windowHolder);
+  await textEffect('#window-cont', content, 18);
+
+  const closeButton = document.querySelector('#close');
+  closeButton.style.opacity = 0;
+  closeButton.style.display = 'block';
+  await new Promise((resolve) => setTimeout(resolve, 10));
+  closeButton.style.opacity = 1;
+}
+//이 코드는 한번 만들고 얼마나 굴려먹고 있는거야 ㅋㅋㅋㅋ
+
+let 폭탄개수 = 0;
+function 폭탄배치(x, y) {
+  폭탄개수++;
+  const bomb = document.createElement('div');
+  bomb.classList.add('bomb');
+  bomb.id = `b${폭탄개수}`;
+  bomb.style.left = `${오브젝트['#player'].x + 5}px`;
+  bomb.style.top = `${오브젝트['#player'].y + 5}px`;
+  HTML('#world').appendChild(bomb);
+
+  setTimeout(() => {
+    폭발(x + 25, y + 25, bomb.id);
+  }, 1000);
+}
+function 폭발(x, y, 대상이름) {
+  const 대상 = HTML(`#${대상이름}`);
+  if (!대상) {
+    console.error(`대상 ${대상이름}을(를) 찾을 수 없습니다.`);
+    return; //이유는 모르겠는데 자꾸 null 됨
+  }
+  대상.style.animation = `${(admin)?'개쩖폭발':'폭발'} 0.8s ease-out forwards`;
+  const 폭발확인 = setInterval(() => {
+    const 폭발범위 = 대상.getBoundingClientRect();
+    for (const key in 오브젝트) {
+      const 적군오브젝트 = 오브젝트[key];
+      if (!적군오브젝트.name.includes('player')) {
+        const 적군 = HTML(적군오브젝트.name);
+        if (!적군) continue;
+
+        const 적군Rect = 적군.getBoundingClientRect();
+        const 충돌 =
+          폭발범위.left < 적군Rect.right &&
+          폭발범위.right > 적군Rect.left &&
+          폭발범위.top < 적군Rect.bottom &&
+          폭발범위.bottom > 적군Rect.top;
+
+        if (충돌) {
+          //console.log(`적군 ${적군오브젝트.name}이(가) 폭발로 제거됨.`);
+          오브젝트[key].alive = false; // html 은 효과 적용해야해서 조금 있다가 지워야함 ㅇㅇ
+          적군.style.animation = '적죽음 0.5s ease';
+          setTimeout(() => {
+            적군.remove();
+            delete 오브젝트[key];
+            충돌중복방지 = true;
+          }, 495);
         }
       }
-    }, 50);
+    }
+  }, 50);
 
-    setTimeout(() => {
-      clearInterval(폭발확인);
-      대상.remove();
-    }, 795);
-  }
+  setTimeout(() => {
+    clearInterval(폭발확인);
+    대상.remove();
+  }, 795);
+}
 </script>
