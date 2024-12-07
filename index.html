@@ -465,7 +465,21 @@ button:active {
 ></progress>
 <div id="gameOver"></div>
 </div>
-
+<style>
+      @keyframes loaderA{
+        0%{opacity:1}
+        100%{opacity:0}
+      }
+      #loader{
+        width: 100vw;
+        height: 100vh;
+        background-color: black;
+        animation: loaderA 2s ease forwards;
+        position: absolute;
+        pointer-events: none;
+      }
+    </style>
+    <div id = 'loader'></div>
 <script>
 // 시스템 함수 설정
 function HTML(name) {
